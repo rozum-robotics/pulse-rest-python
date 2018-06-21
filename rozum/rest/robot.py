@@ -42,7 +42,7 @@ class Robot(object):
     def status_motion(self):
         return self.api.status_motion()
 
-    def await_motion(self, asking_interval):
+    def await_motion(self, asking_interval=0.1):
         while self.status_motion() != MotionStatus.IDLE:
             time.sleep(asking_interval)
 

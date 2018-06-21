@@ -4,6 +4,7 @@ All URIs are relative to *http://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**await_motion**](#await_motion) | uses  [**status_motion**](#status_motion) | Waiting till robot finishes motion.
 [**close_gripper**](#close_gripper) | **PUT** /gripper/close | Ask robot to Close Gripper
 [**freeze**](#freeze) | **PUT** /freeze | Freezes robot
 [**get_pose**](#get_pose) | **GET** /pose | Current Pose
@@ -17,6 +18,35 @@ Method | HTTP request | Description
 [**status_motion**](#status_motion) | **GET** /status/motion | Status of Motion
 [**status_motors**](#status_motors) | **GET** /status/motors | Status of Motors
 
+# **await_motion**
+> await_motion(asking_interval)
+
+Ask robot to wait until it finishes motion.
+
+### Example
+```python
+from __future__ import print_function
+import rozum.rest.client
+from rozum.rest.client.rest import ApiException
+from rozum.rest.client.models import Pose
+# create an instance of the API class
+robot = rozum.rest.Robot()
+
+try:
+    # Tell robot to go somewhere
+    robot.set_pose(Pose([0, 0, 0, 0, 0, 0]), speed=100)
+    # Wait till movement finishes.
+    robot.await_motion()
+except ApiException as e:
+    print("Exception when calling Robot: %s\n" % e)
+```
+
+### Parameters
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **asking_interval** | **float**| time in seconds | default = 0.1 s
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **close_gripper**
 > close_gripper()
