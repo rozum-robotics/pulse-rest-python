@@ -13,6 +13,7 @@ console.setLevel(logging.DEBUG)
 formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 console.setFormatter(formatter)
 logging.getLogger('').addHandler(console)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
 
 robot = Robot("192.168.0.150:8081")
 nut_height = 0.024
