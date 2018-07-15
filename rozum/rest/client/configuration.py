@@ -44,7 +44,7 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
     Do not edit the class manually.
     """
 
-    def __init__(self, host=None):
+    def __init__(self):
         """Constructor"""
         # Default Base url
         self.host = "http://localhost:8080"
@@ -63,7 +63,7 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
 
         # Logging Settings
         self.logger = {}
-        self.logger["package_logger"] = logging.getLogger("rozum.rest.client")
+        self.logger["package_logger"] = logging.getLogger("swagger_client")
         self.logger["urllib3_logger"] = logging.getLogger("urllib3")
         # Log format
         self.logger_format = '%(asctime)s %(levelname)s %(message)s'

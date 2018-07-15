@@ -33,6 +33,204 @@ class DefaultApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
+    def change_base(self, body, **kwargs):  # noqa: E501
+        """Change robot User Base  # noqa: E501
+
+        Change robot User Base current to specified  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.change_base(body, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param Position body: Request Body (required)
+        :return: Position
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.change_base_with_http_info(body, **kwargs)  # noqa: E501
+        else:
+            (data) = self.change_base_with_http_info(body, **kwargs)  # noqa: E501
+            return data
+
+    def change_base_with_http_info(self, body, **kwargs):  # noqa: E501
+        """Change robot User Base  # noqa: E501
+
+        Change robot User Base current to specified  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.change_base_with_http_info(body, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param Position body: Request Body (required)
+        :return: Position
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['body']  # noqa: E501
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method change_base" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'body' is set
+        if ('body' not in params or
+                params['body'] is None):
+            raise ValueError("Missing the required parameter `body` when calling `change_base`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'text/plain'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/base', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='Position',  # noqa: E501
+            auth_settings=auth_settings,
+            async=params.get('async'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def change_tool(self, body, **kwargs):  # noqa: E501
+        """Change robot tool  # noqa: E501
+
+        Change robot tool current to specified  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.change_tool(body, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param Tool body: Request Body (required)
+        :return: Tool
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.change_tool_with_http_info(body, **kwargs)  # noqa: E501
+        else:
+            (data) = self.change_tool_with_http_info(body, **kwargs)  # noqa: E501
+            return data
+
+    def change_tool_with_http_info(self, body, **kwargs):  # noqa: E501
+        """Change robot tool  # noqa: E501
+
+        Change robot tool current to specified  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.change_tool_with_http_info(body, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param Tool body: Request Body (required)
+        :return: Tool
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['body']  # noqa: E501
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method change_tool" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'body' is set
+        if ('body' not in params or
+                params['body'] is None):
+            raise ValueError("Missing the required parameter `body` when calling `change_tool`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'text/plain'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/tool', 'POST',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='Tool',  # noqa: E501
+            auth_settings=auth_settings,
+            async=params.get('async'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def close_gripper(self, **kwargs):  # noqa: E501
         """Ask robot to Close Gripper  # noqa: E501
 
@@ -43,6 +241,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async bool
+        :param float timeout: Time to wait for gripper closing
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
@@ -64,12 +263,13 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async bool
+        :param float timeout: Time to wait for gripper closing
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = []  # noqa: E501
+        all_params = ['timeout']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -90,6 +290,8 @@ class DefaultApi(object):
         path_params = {}
 
         query_params = []
+        if 'timeout' in params:
+            query_params.append(('timeout', params['timeout']))  # noqa: E501
 
         header_params = {}
 
@@ -200,6 +402,93 @@ class DefaultApi(object):
             post_params=form_params,
             files=local_var_files,
             response_type=None,  # noqa: E501
+            auth_settings=auth_settings,
+            async=params.get('async'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def get_base(self, **kwargs):  # noqa: E501
+        """Current User Base  # noqa: E501
+
+        Returns current Robot User Base  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_base(async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :return: Position
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_base_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.get_base_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def get_base_with_http_info(self, **kwargs):  # noqa: E501
+        """Current User Base  # noqa: E501
+
+        Returns current Robot User Base  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_base_with_http_info(async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :return: Position
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []  # noqa: E501
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_base" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'text/plain'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/base', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='Position',  # noqa: E501
             auth_settings=auth_settings,
             async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
@@ -381,6 +670,180 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def get_tool(self, **kwargs):  # noqa: E501
+        """Current Tool  # noqa: E501
+
+        Returns current Robot Tool  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_tool(async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :return: Tool
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_tool_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.get_tool_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def get_tool_with_http_info(self, **kwargs):  # noqa: E501
+        """Current Tool  # noqa: E501
+
+        Returns current Robot Tool  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_tool_with_http_info(async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :return: Tool
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []  # noqa: E501
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_tool" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'text/plain'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/tool', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='Tool',  # noqa: E501
+            auth_settings=auth_settings,
+            async=params.get('async'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def identifier(self, **kwargs):  # noqa: E501
+        """Get robot unique identifier  # noqa: E501
+
+        Get robot unique identifier  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.identifier(async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.identifier_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.identifier_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def identifier_with_http_info(self, **kwargs):  # noqa: E501
+        """Get robot unique identifier  # noqa: E501
+
+        Get robot unique identifier  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.identifier_with_http_info(async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []  # noqa: E501
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method identifier" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/robot/id', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=None,  # noqa: E501
+            auth_settings=auth_settings,
+            async=params.get('async'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def open_gripper(self, **kwargs):  # noqa: E501
         """Ask robot to Open Gripper  # noqa: E501
 
@@ -391,6 +854,7 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async bool
+        :param float timeout: Time to wait for gripper opening
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
@@ -412,12 +876,13 @@ class DefaultApi(object):
         >>> result = thread.get()
 
         :param async bool
+        :param float timeout: Time to wait for gripper opening
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = []  # noqa: E501
+        all_params = ['timeout']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -438,6 +903,8 @@ class DefaultApi(object):
         path_params = {}
 
         query_params = []
+        if 'timeout' in params:
+            query_params.append(('timeout', params['timeout']))  # noqa: E501
 
         header_params = {}
 
@@ -555,41 +1022,41 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def run_poses(self, body, **kwargs):  # noqa: E501
+    def run_poses(self, body, speed, **kwargs):  # noqa: E501
         """Run poses  # noqa: E501
 
         Run poses  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.run_poses(body, async=True)
+        >>> thread = api.run_poses(body, speed, async=True)
         >>> result = thread.get()
 
         :param async bool
         :param list[Pose] body: Request Body (required)
-        :param float speed: Speed of Robot
+        :param float speed: Speed of Robot (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.run_poses_with_http_info(body, **kwargs)  # noqa: E501
+            return self.run_poses_with_http_info(body, speed, **kwargs)  # noqa: E501
         else:
-            (data) = self.run_poses_with_http_info(body, **kwargs)  # noqa: E501
+            (data) = self.run_poses_with_http_info(body, speed, **kwargs)  # noqa: E501
             return data
 
-    def run_poses_with_http_info(self, body, **kwargs):  # noqa: E501
+    def run_poses_with_http_info(self, body, speed, **kwargs):  # noqa: E501
         """Run poses  # noqa: E501
 
         Run poses  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.run_poses_with_http_info(body, async=True)
+        >>> thread = api.run_poses_with_http_info(body, speed, async=True)
         >>> result = thread.get()
 
         :param async bool
         :param list[Pose] body: Request Body (required)
-        :param float speed: Speed of Robot
+        :param float speed: Speed of Robot (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
@@ -614,6 +1081,10 @@ class DefaultApi(object):
         if ('body' not in params or
                 params['body'] is None):
             raise ValueError("Missing the required parameter `body` when calling `run_poses`")  # noqa: E501
+        # verify the required parameter 'speed' is set
+        if ('speed' not in params or
+                params['speed'] is None):
+            raise ValueError("Missing the required parameter `speed` when calling `run_poses`")  # noqa: E501
 
         collection_formats = {}
 
@@ -658,49 +1129,47 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def run_positions(self, body, **kwargs):  # noqa: E501
+    def run_positions(self, body, speed, **kwargs):  # noqa: E501
         """Run positions  # noqa: E501
 
         Run positions  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.run_positions(body, async=True)
+        >>> thread = api.run_positions(body, speed, async=True)
         >>> result = thread.get()
 
         :param async bool
         :param list[Position] body: Request Body (required)
-        :param float speed: Speed of Robot. Will be ignored if Time parameter was set.
-        :param float time: Time interval to execute Operation.
+        :param float speed: Speed of Robot (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.run_positions_with_http_info(body, **kwargs)  # noqa: E501
+            return self.run_positions_with_http_info(body, speed, **kwargs)  # noqa: E501
         else:
-            (data) = self.run_positions_with_http_info(body, **kwargs)  # noqa: E501
+            (data) = self.run_positions_with_http_info(body, speed, **kwargs)  # noqa: E501
             return data
 
-    def run_positions_with_http_info(self, body, **kwargs):  # noqa: E501
+    def run_positions_with_http_info(self, body, speed, **kwargs):  # noqa: E501
         """Run positions  # noqa: E501
 
         Run positions  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.run_positions_with_http_info(body, async=True)
+        >>> thread = api.run_positions_with_http_info(body, speed, async=True)
         >>> result = thread.get()
 
         :param async bool
         :param list[Position] body: Request Body (required)
-        :param float speed: Speed of Robot. Will be ignored if Time parameter was set.
-        :param float time: Time interval to execute Operation.
+        :param float speed: Speed of Robot (required)
         :return: None
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body', 'speed', 'time']  # noqa: E501
+        all_params = ['body', 'speed']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -719,6 +1188,10 @@ class DefaultApi(object):
         if ('body' not in params or
                 params['body'] is None):
             raise ValueError("Missing the required parameter `body` when calling `run_positions`")  # noqa: E501
+        # verify the required parameter 'speed' is set
+        if ('speed' not in params or
+                params['speed'] is None):
+            raise ValueError("Missing the required parameter `speed` when calling `run_positions`")  # noqa: E501
 
         collection_formats = {}
 
@@ -727,8 +1200,6 @@ class DefaultApi(object):
         query_params = []
         if 'speed' in params:
             query_params.append(('speed', params['speed']))  # noqa: E501
-        if 'time' in params:
-            query_params.append(('time', params['time']))  # noqa: E501
 
         header_params = {}
 
@@ -868,49 +1339,47 @@ class DefaultApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
-    def set_position(self, body, **kwargs):  # noqa: E501
+    def set_position(self, body, speed, **kwargs):  # noqa: E501
         """Set new position for Robot  # noqa: E501
 
         Set new position for Robot  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.set_position(body, async=True)
+        >>> thread = api.set_position(body, speed, async=True)
         >>> result = thread.get()
 
         :param async bool
         :param Position body: Request Body (required)
-        :param float speed: Speed of Robot. Will be ignored if Time parameter was set.
-        :param float time: Time interval to execute Operation.
+        :param float speed: Speed of Robot (required)
         :return: Position
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async'):
-            return self.set_position_with_http_info(body, **kwargs)  # noqa: E501
+            return self.set_position_with_http_info(body, speed, **kwargs)  # noqa: E501
         else:
-            (data) = self.set_position_with_http_info(body, **kwargs)  # noqa: E501
+            (data) = self.set_position_with_http_info(body, speed, **kwargs)  # noqa: E501
             return data
 
-    def set_position_with_http_info(self, body, **kwargs):  # noqa: E501
+    def set_position_with_http_info(self, body, speed, **kwargs):  # noqa: E501
         """Set new position for Robot  # noqa: E501
 
         Set new position for Robot  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
-        >>> thread = api.set_position_with_http_info(body, async=True)
+        >>> thread = api.set_position_with_http_info(body, speed, async=True)
         >>> result = thread.get()
 
         :param async bool
         :param Position body: Request Body (required)
-        :param float speed: Speed of Robot. Will be ignored if Time parameter was set.
-        :param float time: Time interval to execute Operation.
+        :param float speed: Speed of Robot (required)
         :return: Position
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body', 'speed', 'time']  # noqa: E501
+        all_params = ['body', 'speed']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -929,6 +1398,10 @@ class DefaultApi(object):
         if ('body' not in params or
                 params['body'] is None):
             raise ValueError("Missing the required parameter `body` when calling `set_position`")  # noqa: E501
+        # verify the required parameter 'speed' is set
+        if ('speed' not in params or
+                params['speed'] is None):
+            raise ValueError("Missing the required parameter `speed` when calling `set_position`")  # noqa: E501
 
         collection_formats = {}
 
@@ -937,8 +1410,6 @@ class DefaultApi(object):
         query_params = []
         if 'speed' in params:
             query_params.append(('speed', params['speed']))  # noqa: E501
-        if 'time' in params:
-            query_params.append(('time', params['time']))  # noqa: E501
 
         header_params = {}
 
