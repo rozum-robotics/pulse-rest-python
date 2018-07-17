@@ -27,10 +27,14 @@ class Robot(object):
     def run_poses(self, poses, speed):
         return self.api.run_poses(poses, speed=speed)
 
-    def open_gripper(self):
+    def open_gripper(self, timeout=None):
+        if timeout is not None:
+            return self.api.open_gripper(timeout=timeout)
         return self.api.open_gripper()
 
-    def close_gripper(self):
+    def close_gripper(self, timeout=None):
+        if timeout is not None:
+            return self.api.close_gripper(timeout=timeout)
         return self.api.close_gripper()
 
     def relax(self):
