@@ -25,7 +25,7 @@ cycles = 1
 replaces = 6
 z_offset = 0.138
 aiming_offset = 0.06
-SPEED = 100
+SPEED = 70
 REPETITIONS = 1000
 data = {"x":[], "y":[], "z":[]}
 
@@ -86,12 +86,10 @@ def packing_positions_aim(x, y, num): return list(map(lambda i: position_aim(x, 
 def packing_positions_take(x, y, num): return list(map(lambda i: position_take(x, y, i * nut_height), range(num)))
 
 
-def smoothing_position(pos1: Position, pos2: Position, delta=0.5):
+def smoothing_position(pos1: Position, pos2: Position):
     p1, p2 = pos1.point, pos2.point
-    v1, v2 = np.array([p1.x, p1.y, p1.z]), np.array([p2.x, p2.y, p2.z])
-    v = v2 - v1
-    v[2] *= -1
-    return position_vertical(*(v1 + v*delta).data)
+    smooth_point = ((p1.x + p2.x) / 2, (p1.y + p2.y) / 2, (p1.z + p2.z) / 1.1)
+    return position_vertical(*smooth_point)
 
 
 def set_await(p):
@@ -136,7 +134,9 @@ def operation_cycle(nuts_list, aims_list, takes_list):
         robot.open_gripper(100)
         l1, l2 = lin_interp(n.take_position, n.aim_position)[1:], lin_interp(aim, take)
         lin_mid = lin_interp(l1[-1], l2[0], 0.25)[:-1]
-        mid_positions = l1 + l2
+        smooth1 = smoothing_position(l1[-1], l2[0])
+        smooth0, smooth2 = lin_interp(l1[-1], smooth1)[1], lin_interp(smooth1, l2[0])[-2]
+        mid_positions = l1 + [smooth0, smooth1, smooth2] + l2
         run_await(mid_positions)
         list(map(update_data, mid_positions))
         robot.close_gripper(50)
