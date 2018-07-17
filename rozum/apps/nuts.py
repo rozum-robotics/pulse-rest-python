@@ -6,7 +6,6 @@ import time
 import logging
 import numpy as np
 from collections import deque
-import pandas as pd
 
 logging.basicConfig(filename="nuts-app.log", level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
 
@@ -203,7 +202,7 @@ def run():
 
         # pack
         operation_cycle(nuts, pack_positions_aim, pack_positions_take)
-        pd.DataFrame(data).to_csv("movements.csv")
+        # pd.DataFrame(data).to_csv("movements.csv")
         repetition_finish = time.time()
         logging.info("Repetition {} time {} s".format(r, repetition_finish - repetition_start))
     end_time = time.time()
