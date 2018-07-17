@@ -158,6 +158,16 @@ def operation_cycle(nuts_list, aims_list, takes_list):
         list(map(update_data, last_positions))
         n.take_position, n.aim_position = take, aim
 
+pointing_called = False
+def point_to_starts(start1:Position, start2:Position):
+    global pointing_called
+    if not pointing_called:
+        set_await(start1)
+        time.sleep(5)
+        set_await(start2)
+        time.sleep(5)
+        pointing_called = True
+
 
 def run():
     c1, c2 = (-0.6, -0.1), (-0.1, -0.6)
@@ -183,20 +193,18 @@ def run():
 
         list(map(add_next_nut, zip(nuts, shifted_nuts)))
         # unpack
-        set_await(nuts[0].aim_position)
-        time.sleep(5)
+        point_to_starts(nuts[0].aim_position, nuts[3].aim_position)
         robot.close_gripper(100)
         repetition_start = time.time()
         # first nut
-        unpack = list(zip(nuts, aim_positions1, take_positions1))
-
         operation_cycle(nuts, aim_positions1, take_positions1)
 
         # replaces
         for c in range(cycles):
             replace_cycle_start = time.time()
             operation_cycle(nuts, aim_positions2, take_positions2)
-            # operation_cycle(nuts, aim_positions1, take_positions1)
+            if cycles > 1:
+                operation_cycle(nuts, aim_positions1, take_positions1)
             replace_cycle_finish = time.time()
             logging.info("Replacing cycle {} time {} s".format(c, replace_cycle_finish - replace_cycle_start))
 
