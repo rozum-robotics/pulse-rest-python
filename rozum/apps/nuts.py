@@ -184,9 +184,9 @@ def run():
     for r in range(REPETITIONS):
         pack_positions_aim = packing_positions_aim(*start_point1, 3) + packing_positions_aim(*start_point2, 3)
         pack_positions_take = packing_positions_take(*start_point1, 3) + packing_positions_take(*start_point2, 3)
+        unpack_positions_aim, unpack_positions_take = pack_positions_aim[::-1], pack_positions_take[::-1]
         for p, zp in zip(pack_positions_take, z_offset_pack):
             p.point.z += zp
-        unpack_positions_aim, unpack_positions_take = pack_positions_aim[::-1], pack_positions_take[::-1]
         for p, zp in zip(unpack_positions_take,z_offset_unpack):
             p.point.z += zp
 
