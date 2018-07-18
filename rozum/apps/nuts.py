@@ -184,6 +184,8 @@ def run():
         aim_positions1, take_positions1 = aiming_positions(targets1), taking_positions(targets1)
         aim_positions2, take_positions2 = aiming_positions(targets2), taking_positions(targets2)
 
+        for t in take_positions1:
+            t.point.z += 0.002
         nuts = list(map(lambda x: Nut(x[0], x[1]), zip(unpack_positions_aim, unpack_positions_take)))
         shifted_nuts = deque(nuts)
         shifted_nuts.rotate(-1)
