@@ -171,6 +171,9 @@ def point_to_starts(start1:Position, start2:Position):
 
 z_offset_pack = [0, 0, 0, 0, 0, 0]
 z_offset_unpack = [0, 0, 0, 0, 0, 0]
+z_offset_circle1 = [0, 0, 0, 0, 0, 0]
+z_offset_circle2 = [0, 0, 0, 0, 0, 0]
+
 def run():
     c1, c2 = (-0.3, -0.52), (-0.3, 0.52)
     targets1 = generate_target_coordinates(*c1, 0.1)
@@ -191,10 +194,10 @@ def run():
         aim_positions1, take_positions1 = aiming_positions(targets1), taking_positions(targets1)
         aim_positions2, take_positions2 = aiming_positions(targets2), taking_positions(targets2)
 
-        for t in take_positions1:
-            t.point.z += 0.002
-        for t1 in take_positions2:
-            t1.point.z += 0.003
+        for t, zo in zip(take_positions1, z_offset_circle1):
+            t.point.z += zo
+        for t, zo in zip(take_positions2, z_offset_circle2):
+            t.point.z += zo
         nuts = list(map(lambda x: Nut(x[0], x[1]), zip(unpack_positions_aim, unpack_positions_take)))
         shifted_nuts = deque(nuts)
         shifted_nuts.rotate(-1)
