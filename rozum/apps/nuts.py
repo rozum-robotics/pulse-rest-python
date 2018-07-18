@@ -22,7 +22,7 @@ nut_num = 6
 n_places = nut_num + 1
 cycles = 1
 replaces = 6
-z_offset = 0.138
+z_offset = 0.133
 aiming_offset = 0.055
 SPEED = 100
 REPETITIONS = 1000
@@ -186,6 +186,8 @@ def run():
 
         for t in take_positions1:
             t.point.z += 0.002
+        for t1 in take_positions2:
+            t1.point.z += 0.003
         nuts = list(map(lambda x: Nut(x[0], x[1]), zip(unpack_positions_aim, unpack_positions_take)))
         shifted_nuts = deque(nuts)
         shifted_nuts.rotate(-1)
