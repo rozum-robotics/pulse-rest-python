@@ -22,7 +22,7 @@ nut_num = 6
 n_places = nut_num + 1
 cycles = 1
 replaces = 6
-z_offset = 0.133
+z_offset = 0.130
 aiming_offset = 0.055
 SPEED = 100
 REPETITIONS = 1000
@@ -186,7 +186,6 @@ def run():
         pack_positions_take = packing_positions_take(*start_point1, 3) + packing_positions_take(*start_point2, 3)
         for p, zp in zip(pack_positions_take, z_offset_pack):
             p.point.z += zp
-
         unpack_positions_aim, unpack_positions_take = pack_positions_aim[::-1], pack_positions_take[::-1]
         for p, zp in zip(unpack_positions_take,z_offset_unpack):
             p.point.z += zp
@@ -223,8 +222,6 @@ def run():
             logging.info("Replacing cycle {} time {} s".format(c, replace_cycle_finish - replace_cycle_start))
 
         # pack
-        for pac in pack_positions_take:
-            pac.point.z += 0.003
         operation_cycle(nuts, pack_positions_aim, pack_positions_take)
         # pd.DataFrame(data).to_csv("movements.csv")
         repetition_finish = time.time()
