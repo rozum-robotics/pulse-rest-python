@@ -169,6 +169,8 @@ def point_to_starts(start1:Position, start2:Position):
         pointing_called = True
 
 
+z_offset_pack = [0, 0, 0, 0, 0, 0]
+z_offset_unpack = [0, 0, 0, 0, 0, 0]
 def run():
     c1, c2 = (-0.3, -0.52), (-0.3, 0.52)
     targets1 = generate_target_coordinates(*c1, 0.1)
@@ -179,7 +181,12 @@ def run():
     for r in range(REPETITIONS):
         pack_positions_aim = packing_positions_aim(*start_point1, 3) + packing_positions_aim(*start_point2, 3)
         pack_positions_take = packing_positions_take(*start_point1, 3) + packing_positions_take(*start_point2, 3)
+        for p, zp in zip(pack_positions_take, z_offset_pack):
+            p.point.z += zp
+
         unpack_positions_aim, unpack_positions_take = pack_positions_aim[::-1], pack_positions_take[::-1]
+        for p, zp in zip(unpack_positions_take,z_offset_unpack):
+            p.point.z += zp
 
         aim_positions1, take_positions1 = aiming_positions(targets1), taking_positions(targets1)
         aim_positions2, take_positions2 = aiming_positions(targets2), taking_positions(targets2)
