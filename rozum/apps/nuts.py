@@ -213,6 +213,8 @@ def run():
             logging.info("Replacing cycle {} time {} s".format(c, replace_cycle_finish - replace_cycle_start))
 
         # pack
+        for pac in pack_positions_take:
+            pac.point.z += 0.003
         operation_cycle(nuts, pack_positions_aim, pack_positions_take)
         # pd.DataFrame(data).to_csv("movements.csv")
         repetition_finish = time.time()
