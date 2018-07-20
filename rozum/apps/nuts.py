@@ -175,11 +175,11 @@ z_offset_circle1 = [0, 0, 0, 0, 0, 0]
 z_offset_circle2 = [0, 0, 0, 0, 0, 0]
 
 def run():
-    c1, c2 = (-0.3, -0.52), (-0.3, 0.52)
+    c1, c2 = (-0.1, -0.6), (-0.6, -0.1)
     targets1 = generate_target_coordinates(*c1, 0.1)
     targets2 = generate_target_coordinates(*c2, 0.1)
-    start_point1 = (-0.55, 0)
-    start_point2 = (-0.45, 0)
+    start_point1 = (-0.3, -0.3)
+    start_point2 = (-0.36, -0.36)
     start_time = time.time()
     for r in range(REPETITIONS):
         pack_positions_aim = packing_positions_aim(*start_point1, 3) + packing_positions_aim(*start_point2, 3)
