@@ -107,55 +107,34 @@ def run_await(p):
     robot.await_motion(0.05)
 
 
-def move_nut_interp(n: Nut, target_aim, target_take):
-    logging.debug("Taking nut {} from {}".format(n.id, n.take_position))
-    move_start = time.time()
-    positions_before_take = lin_interp(n.aim_position, n.take_position)
-    run_await(positions_before_take)
-    list(map(update_data, positions_before_take))
-    robot.open_gripper(100)
-    logging.debug("Moving nut {} to {}".format(n.id, target_take))
-    replacing_positions = [n.aim_position, *lin_interp(target_aim, target_take)]
-    run_await(replacing_positions)
-    list(map(update_data, replacing_positions))
-    robot.close_gripper(50)
-    go_up = lin_interp(target_take, target_aim)[1:]
-    after_replacing_positions = [*go_up, ]
-    run_await(after_replacing_positions)
-    list(map(update_data, after_replacing_positions))
-    move_end = time.time()
-    logging.debug("Moving from {} to {} took {} seconds".format(n.take_position, target_take, move_end - move_start))
-    n.aim_position, n.take_position = target_aim, target_take
-
-
 def operation_cycle(nuts_list, aims_list, takes_list):
     zipped = zip(nuts_list, aims_list, takes_list)
     for n, aim, take in zipped:
         if n.id == 0:
             robot.close_gripper(50)
             first_positions = lin_interp(n.aim_position, n.take_position)
-            run_await(first_positions)
             list(map(update_data, first_positions))
+            run_await(first_positions)
         robot.open_gripper(100)
         l1, l2 = lin_interp(n.take_position, n.aim_position)[1:], lin_interp(aim, take)
         lin_mid = lin_interp(l1[-1], l2[0], 0.1)[:-1]
-        l1.append(l1[-1])  # upper point duplication
-        # l1.append(with_prev_z(l1[-1], l2[0]))
-        l1.append(l2[0])  # upper point duplication
+        # l1.append(l1[-1])  # upper point duplication
+        # l1.append(l2[0])  # upper point duplication
         mid_positions = l1 + l2
-        run_await(mid_positions)
         list(map(update_data, mid_positions))
+        run_await(mid_positions)
         robot.close_gripper(50)
         last_positions = lin_interp(take, aim)[1:]
-        last_positions.append(last_positions[-1])
+        # last_positions.append(last_positions[-1])  # point duplication
         if n.id != 5:
             position___ = lin_interp(last_positions[-1], n.next_nut.aim_position, 0.2)[1:-1]
             last_positions += lin_interp(n.next_nut.aim_position, n.next_nut.take_position)
-            last_positions.append(last_positions[-1])
+            # last_positions.append(last_positions[-1]) # point duplication
+            list(map(update_data, last_positions))
             run_await(last_positions)
         else:
+            list(map(update_data, last_positions))
             run_await(last_positions)
-        list(map(update_data, last_positions))
         n.take_position, n.aim_position = take, aim
 
 pointing_called = False
@@ -174,12 +153,13 @@ z_offset_unpack = [0, 0, 0, 0, 0, 0]
 z_offset_circle1 = [0, 0, 0, 0, 0, 0]
 z_offset_circle2 = [0, 0, 0, 0, 0, 0]
 
+
 def run():
     c1, c2 = (-0.1, -0.6), (-0.6, -0.1)
     targets1 = generate_target_coordinates(*c1, 0.1)
     targets2 = generate_target_coordinates(*c2, 0.1)
-    start_point1 = (-0.3, -0.3)
-    start_point2 = (-0.36, -0.36)
+    start_point1 = (-0.4, -0.4)
+    start_point2 = (-0.3, -0.3)
     start_time = time.time()
     for r in range(REPETITIONS):
         pack_positions_aim = packing_positions_aim(*start_point1, 3) + packing_positions_aim(*start_point2, 3)
@@ -187,7 +167,7 @@ def run():
         unpack_positions_aim, unpack_positions_take = pack_positions_aim[::-1], pack_positions_take[::-1]
         for p, zp in zip(pack_positions_take, z_offset_pack):
             p.point.z += zp
-        for p, zp in zip(unpack_positions_take,z_offset_unpack):
+        for p, zp in zip(unpack_positions_take, z_offset_unpack):
             p.point.z += zp
 
         aim_positions1, take_positions1 = aiming_positions(targets1), taking_positions(targets1)
@@ -223,7 +203,6 @@ def run():
 
         # pack
         operation_cycle(nuts, pack_positions_aim, pack_positions_take)
-        # pd.DataFrame(data).to_csv("movements.csv")
         repetition_finish = time.time()
         logging.info("Repetition {} time {} s".format(r, repetition_finish - repetition_start))
     end_time = time.time()
