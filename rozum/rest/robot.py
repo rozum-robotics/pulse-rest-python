@@ -35,6 +35,12 @@ class Robot(object):
     def get_position(self):
         return self.api.get_position()
 
+    def get_tool(self):
+        return self.api.get_tool()
+
+    def identifier(self):
+        return self.api.identifier()
+
     def set_position(self, position, speed):
         return self.api.set_position(position, speed=speed)
 
