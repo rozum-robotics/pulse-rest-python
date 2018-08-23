@@ -16,8 +16,8 @@ import re  # noqa: F401
 
 import six
 
-from swagger_client.models.point import Point  # noqa: F401,E501
-from swagger_client.models.rotation import Rotation  # noqa: F401,E501
+from rozum.rest.client.models.point import Point  # noqa: F401,E501
+from rozum.rest.client.models.rotation import Rotation  # noqa: F401,E501
 
 
 class Tool(object):
