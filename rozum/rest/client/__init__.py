@@ -20,7 +20,8 @@ from rozum.rest.client.api import RobotApi
 
 # import ApiClient
 from rozum.rest.client.api_client import ApiClient
+from rozum.rest.client.rest import ApiException
 from rozum.rest.client.configuration import Configuration
 # import models into sdk package
 import rozum.rest.client.models as models
-__all__ = models.__all__ + ["RobotApi"]
+__all__ = models.__all__ + ["RobotApi", "ApiException"]
