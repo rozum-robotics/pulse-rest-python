@@ -261,7 +261,7 @@ Name | Type | Description  | Notes
 **str**
 
 ### **set_digital_output_high**
-> str set_digital_output_high(port)
+> str robot.set_digital_output_high(port)
 
 Set high level of digital output signal
 
