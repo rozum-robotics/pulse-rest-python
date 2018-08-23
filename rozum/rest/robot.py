@@ -20,6 +20,18 @@ class Robot(object):
             return self.api.close_gripper(timeout=timeout)
         return self.api.close_gripper()
 
+    def freeze(self):
+        return self.api.freeze()
+
+    def get_base(self):
+        return self.api.get_base()
+
+    def get_digital_output(self, port):
+        return self.api.get_digital_output(port)
+
+    def get_pose(self):
+        return self.api.get_pose()
+
     def get_position(self):
         return self.api.get_position()
 
@@ -28,9 +40,6 @@ class Robot(object):
 
     def run_positions(self, positions, speed):
         return self.api.run_positions(positions, speed=speed)
-
-    def get_pose(self):
-        return self.api.get_pose()
 
     def set_pose(self, pose, speed):
         return self.api.set_pose(pose, speed=speed)
@@ -45,9 +54,6 @@ class Robot(object):
 
     def relax(self):
         return self.api.relax()
-
-    def freeze(self):
-        return self.api.freeze()
 
     def status_motion(self):
         return self.api.status_motion()
