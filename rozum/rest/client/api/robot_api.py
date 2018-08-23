@@ -504,7 +504,7 @@ class RobotApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :param float port: Number of output digital port that you want to set high level. (required)
+        :param int port: Number of output digital port that you want to set high level. (required)
         :return: Signal
                  If the method is called asynchronously,
                  returns the request thread.
@@ -526,7 +526,7 @@ class RobotApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :param float port: Number of output digital port that you want to set high level. (required)
+        :param int port: Number of output digital port that you want to set high level. (required)
         :return: Signal
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1343,7 +1343,7 @@ class RobotApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :param float port: Number of output digital port that you want to set high level. (required)
+        :param int port: Number of output digital port that you want to set high level. (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1365,7 +1365,7 @@ class RobotApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :param float port: Number of output digital port that you want to set high level. (required)
+        :param int port: Number of output digital port that you want to set high level. (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1442,7 +1442,7 @@ class RobotApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :param float port: Number of output digital port that you want to set low level. (required)
+        :param int port: Number of output digital port that you want to set low level. (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1464,7 +1464,7 @@ class RobotApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :param float port: Number of output digital port that you want to set low level. (required)
+        :param int port: Number of output digital port that you want to set low level. (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
