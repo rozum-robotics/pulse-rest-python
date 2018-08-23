@@ -1,11 +1,8 @@
-# Rotation
+# ErrorEmergency503
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**roll** | **float** | (in radians) | 
-**pitch** | **float** | (in radians) | 
-**yaw** | **float** | (in radians) | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
