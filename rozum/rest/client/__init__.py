@@ -19,7 +19,7 @@ from __future__ import absolute_import
 from rozum.rest.client.api import RobotApi
 
 # import ApiClient
-from rozum.rest.client.rest import ApiException as RestApiException
-from rozum.rest.client.configuration import Configuration
+from rozum.rest.client.api.rest import ApiException as RestApiException
+from rozum.rest.client.api.configuration import Configuration
 # import models into sdk package
 from rozum.rest.client.models import *

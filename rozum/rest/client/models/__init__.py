@@ -28,4 +28,4 @@ from rozum.rest.client.models.position import Position
 from rozum.rest.client.models.rotation import Rotation
 from rozum.rest.client.models.signal import Signal
 from rozum.rest.client.models.tool import Tool
-__all__ = ["MotionStatus", "Point", "Pose", "Position", "Rotation", "Signal", "Tool"]
+__all__ = ["MotionStatus", "MotorStatus", "Point", "Pose", "Position", "Rotation", "Signal", "Tool"]
