@@ -1,11 +1,11 @@
-from rozum.rest.client import DefaultApi
+from rozum.rest.client import RobotApi
 from rozum.rest.client.models import MotionStatus
 import time
 
 
 class Robot(object):
     def __init__(self, host=None):
-        self.api = DefaultApi()
+        self.api = RobotApi()
         if host is not None:
             self.api.api_client.configuration.host = host
 
