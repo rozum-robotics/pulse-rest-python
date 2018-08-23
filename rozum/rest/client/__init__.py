@@ -22,4 +22,5 @@ from rozum.rest.client.api import RobotApi
 from rozum.rest.client.api_client import ApiClient
 from rozum.rest.client.configuration import Configuration
 # import models into sdk package
-from rozum.rest.client.models import *
+import rozum.rest.client.models as models
+__all__ = models.__all__ + ["RobotApi"]

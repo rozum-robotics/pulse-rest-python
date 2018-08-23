@@ -28,5 +28,5 @@ from rozum.rest.client.models.position import Position
 from rozum.rest.client.models.rotation import Rotation
 from rozum.rest.client.models.signal import Signal
 from rozum.rest.client.models.tool import Tool
-__all__ = ("Error400", "Error500", "ErrorEmergency503", "ErrorPose412", "ErrorPosition412", "MotionStatus",
-           "MotorStatus", "Point", "Pose", "Position", "Rotation", "Signal", "Tool")
+__all__ = ["Error400", "Error500", "ErrorEmergency503", "ErrorPose412", "ErrorPosition412", "MotionStatus",
+           "MotorStatus", "Point", "Pose", "Position", "Rotation", "Signal", "Tool"]
