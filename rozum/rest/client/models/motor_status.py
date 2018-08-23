@@ -121,7 +121,7 @@ class MotorStatus(object):
     def angle(self):
         """Gets the angle of this MotorStatus.  # noqa: E501
 
-        Current value of 'angle' for this motor  # noqa: E501
+        The actual angular position (in degrees) of the servo's output flange  # noqa: E501
 
         :return: The angle of this MotorStatus.  # noqa: E501
         :rtype: float
@@ -132,7 +132,7 @@ class MotorStatus(object):
     def angle(self, angle):
         """Sets the angle of this MotorStatus.
 
-        Current value of 'angle' for this motor  # noqa: E501
+        The actual angular position (in degrees) of the servo's output flange  # noqa: E501
 
         :param angle: The angle of this MotorStatus.  # noqa: E501
         :type: float
@@ -144,7 +144,7 @@ class MotorStatus(object):
     def rotor_velocity(self):
         """Gets the rotor_velocity of this MotorStatus.  # noqa: E501
 
-        Current velocity of rotor for this motor  # noqa: E501
+        The actual rotor velocity (in RPM)  # noqa: E501
 
         :return: The rotor_velocity of this MotorStatus.  # noqa: E501
         :rtype: float
@@ -155,7 +155,7 @@ class MotorStatus(object):
     def rotor_velocity(self, rotor_velocity):
         """Sets the rotor_velocity of this MotorStatus.
 
-        Current velocity of rotor for this motor  # noqa: E501
+        The actual rotor velocity (in RPM)  # noqa: E501
 
         :param rotor_velocity: The rotor_velocity of this MotorStatus.  # noqa: E501
         :type: float
@@ -167,7 +167,7 @@ class MotorStatus(object):
     def rms_current(self):
         """Gets the rms_current of this MotorStatus.  # noqa: E501
 
-        Current value of RMS current for this motor  # noqa: E501
+        The actual input current (in Amperes)  # noqa: E501
 
         :return: The rms_current of this MotorStatus.  # noqa: E501
         :rtype: float
@@ -178,7 +178,7 @@ class MotorStatus(object):
     def rms_current(self, rms_current):
         """Sets the rms_current of this MotorStatus.
 
-        Current value of RMS current for this motor  # noqa: E501
+        The actual input current (in Amperes)  # noqa: E501
 
         :param rms_current: The rms_current of this MotorStatus.  # noqa: E501
         :type: float
@@ -190,7 +190,7 @@ class MotorStatus(object):
     def voltage(self):
         """Gets the voltage of this MotorStatus.  # noqa: E501
 
-        Current value input power voltage for this motor  # noqa: E501
+        The actual supply voltage (in Volts)  # noqa: E501
 
         :return: The voltage of this MotorStatus.  # noqa: E501
         :rtype: float
@@ -201,7 +201,7 @@ class MotorStatus(object):
     def voltage(self, voltage):
         """Sets the voltage of this MotorStatus.
 
-        Current value input power voltage for this motor  # noqa: E501
+        The actual supply voltage (in Volts)  # noqa: E501
 
         :param voltage: The voltage of this MotorStatus.  # noqa: E501
         :type: float
@@ -236,7 +236,7 @@ class MotorStatus(object):
     def stator_temperature(self):
         """Gets the stator_temperature of this MotorStatus.  # noqa: E501
 
-        Current temperature of stator for this motor  # noqa: E501
+        The actual temperature (in degrees C) as measured on the stator winding  # noqa: E501
 
         :return: The stator_temperature of this MotorStatus.  # noqa: E501
         :rtype: float
@@ -247,7 +247,7 @@ class MotorStatus(object):
     def stator_temperature(self, stator_temperature):
         """Sets the stator_temperature of this MotorStatus.
 
-        Current temperature of stator for this motor  # noqa: E501
+        The actual temperature (in degrees C) as measured on the stator winding  # noqa: E501
 
         :param stator_temperature: The stator_temperature of this MotorStatus.  # noqa: E501
         :type: float
@@ -259,7 +259,7 @@ class MotorStatus(object):
     def servo_temperature(self):
         """Gets the servo_temperature of this MotorStatus.  # noqa: E501
 
-        Current temperature of servo PCB MCU for this motor  # noqa: E501
+        The actual temperature (in degrees C) as measured on the MCU PCB  # noqa: E501
 
         :return: The servo_temperature of this MotorStatus.  # noqa: E501
         :rtype: float
@@ -270,7 +270,7 @@ class MotorStatus(object):
     def servo_temperature(self, servo_temperature):
         """Sets the servo_temperature of this MotorStatus.
 
-        Current temperature of servo PCB MCU for this motor  # noqa: E501
+        The actual temperature (in degrees C) as measured on the MCU PCB  # noqa: E501
 
         :param servo_temperature: The servo_temperature of this MotorStatus.  # noqa: E501
         :type: float
@@ -282,7 +282,7 @@ class MotorStatus(object):
     def velocity_error(self):
         """Gets the velocity_error of this MotorStatus.  # noqa: E501
 
-        Current value of Velocity Error for this motor  # noqa: E501
+        The difference between the preset and the actual rotor velocities (in RPM)  # noqa: E501
 
         :return: The velocity_error of this MotorStatus.  # noqa: E501
         :rtype: float
@@ -293,7 +293,7 @@ class MotorStatus(object):
     def velocity_error(self, velocity_error):
         """Sets the velocity_error of this MotorStatus.
 
-        Current value of Velocity Error for this motor  # noqa: E501
+        The difference between the preset and the actual rotor velocities (in RPM)  # noqa: E501
 
         :param velocity_error: The velocity_error of this MotorStatus.  # noqa: E501
         :type: float
@@ -305,7 +305,7 @@ class MotorStatus(object):
     def velocity_setpoint(self):
         """Gets the velocity_setpoint of this MotorStatus.  # noqa: E501
 
-        Current value of Velocity Setpoint for this motor  # noqa: E501
+        The user-preset rotor velocity (in RPM)  # noqa: E501
 
         :return: The velocity_setpoint of this MotorStatus.  # noqa: E501
         :rtype: float
@@ -316,7 +316,7 @@ class MotorStatus(object):
     def velocity_setpoint(self, velocity_setpoint):
         """Sets the velocity_setpoint of this MotorStatus.
 
-        Current value of Velocity Setpoint for this motor  # noqa: E501
+        The user-preset rotor velocity (in RPM)  # noqa: E501
 
         :param velocity_setpoint: The velocity_setpoint of this MotorStatus.  # noqa: E501
         :type: float
@@ -328,7 +328,7 @@ class MotorStatus(object):
     def velocity_output(self):
         """Gets the velocity_output of this MotorStatus.  # noqa: E501
 
-        Current value of Velocity Output for this motor  # noqa: E501
+        The motor control current (in Amperes) based on the preset velocity  # noqa: E501
 
         :return: The velocity_output of this MotorStatus.  # noqa: E501
         :rtype: float
@@ -339,7 +339,7 @@ class MotorStatus(object):
     def velocity_output(self, velocity_output):
         """Sets the velocity_output of this MotorStatus.
 
-        Current value of Velocity Output for this motor  # noqa: E501
+        The motor control current (in Amperes) based on the preset velocity  # noqa: E501
 
         :param velocity_output: The velocity_output of this MotorStatus.  # noqa: E501
         :type: float
@@ -351,7 +351,7 @@ class MotorStatus(object):
     def velocity_feedback(self):
         """Gets the velocity_feedback of this MotorStatus.  # noqa: E501
 
-        Current value of Velocity Feedback for this motor  # noqa: E501
+        The actual rotor velocity (in RPM)  # noqa: E501
 
         :return: The velocity_feedback of this MotorStatus.  # noqa: E501
         :rtype: float
@@ -362,7 +362,7 @@ class MotorStatus(object):
     def velocity_feedback(self, velocity_feedback):
         """Sets the velocity_feedback of this MotorStatus.
 
-        Current value of Velocity Feedback for this motor  # noqa: E501
+        The actual rotor velocity (in RPM)  # noqa: E501
 
         :param velocity_feedback: The velocity_feedback of this MotorStatus.  # noqa: E501
         :type: float
@@ -374,7 +374,7 @@ class MotorStatus(object):
     def position_error(self):
         """Gets the position_error of this MotorStatus.  # noqa: E501
 
-        Current value of Position Error for this motor  # noqa: E501
+        The difference between the preset and the actual positions of the servo flange (in degrees)  # noqa: E501
 
         :return: The position_error of this MotorStatus.  # noqa: E501
         :rtype: float
@@ -385,7 +385,7 @@ class MotorStatus(object):
     def position_error(self, position_error):
         """Sets the position_error of this MotorStatus.
 
-        Current value of Position Error for this motor  # noqa: E501
+        The difference between the preset and the actual positions of the servo flange (in degrees)  # noqa: E501
 
         :param position_error: The position_error of this MotorStatus.  # noqa: E501
         :type: float
@@ -397,7 +397,7 @@ class MotorStatus(object):
     def position_setpoint(self):
         """Gets the position_setpoint of this MotorStatus.  # noqa: E501
 
-        Current value of Position Setpoint for this motor  # noqa: E501
+        The user-preset position of the servo flange in degrees  # noqa: E501
 
         :return: The position_setpoint of this MotorStatus.  # noqa: E501
         :rtype: float
@@ -408,7 +408,7 @@ class MotorStatus(object):
     def position_setpoint(self, position_setpoint):
         """Sets the position_setpoint of this MotorStatus.
 
-        Current value of Position Setpoint for this motor  # noqa: E501
+        The user-preset position of the servo flange in degrees  # noqa: E501
 
         :param position_setpoint: The position_setpoint of this MotorStatus.  # noqa: E501
         :type: float
@@ -420,7 +420,7 @@ class MotorStatus(object):
     def position_output(self):
         """Gets the position_output of this MotorStatus.  # noqa: E501
 
-        Current value of Position Output for this motor  # noqa: E501
+        Rotor velocity (in RPM) based on the position setpoint  # noqa: E501
 
         :return: The position_output of this MotorStatus.  # noqa: E501
         :rtype: float
@@ -431,7 +431,7 @@ class MotorStatus(object):
     def position_output(self, position_output):
         """Sets the position_output of this MotorStatus.
 
-        Current value of Position Output for this motor  # noqa: E501
+        Rotor velocity (in RPM) based on the position setpoint  # noqa: E501
 
         :param position_output: The position_output of this MotorStatus.  # noqa: E501
         :type: float
@@ -443,7 +443,7 @@ class MotorStatus(object):
     def position_feedback(self):
         """Gets the position_feedback of this MotorStatus.  # noqa: E501
 
-        Current value of Position Feedback for this motor  # noqa: E501
+        The actual position of the servo flange (in degrees) based on the encoder feedback  # noqa: E501
 
         :return: The position_feedback of this MotorStatus.  # noqa: E501
         :rtype: float
@@ -454,7 +454,7 @@ class MotorStatus(object):
     def position_feedback(self, position_feedback):
         """Sets the position_feedback of this MotorStatus.
 
-        Current value of Position Feedback for this motor  # noqa: E501
+        The actual position of the servo flange (in degrees) based on the encoder feedback  # noqa: E501
 
         :param position_feedback: The position_feedback of this MotorStatus.  # noqa: E501
         :type: float

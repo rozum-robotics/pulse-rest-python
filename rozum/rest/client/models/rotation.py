@@ -58,6 +58,7 @@ class Rotation(object):
     def roll(self):
         """Gets the roll of this Rotation.  # noqa: E501
 
+        (in radians)  # noqa: E501
 
         :return: The roll of this Rotation.  # noqa: E501
         :rtype: float
@@ -68,6 +69,7 @@ class Rotation(object):
     def roll(self, roll):
         """Sets the roll of this Rotation.
 
+        (in radians)  # noqa: E501
 
         :param roll: The roll of this Rotation.  # noqa: E501
         :type: float
@@ -81,6 +83,7 @@ class Rotation(object):
     def pitch(self):
         """Gets the pitch of this Rotation.  # noqa: E501
 
+        (in radians)  # noqa: E501
 
         :return: The pitch of this Rotation.  # noqa: E501
         :rtype: float
@@ -91,6 +94,7 @@ class Rotation(object):
     def pitch(self, pitch):
         """Sets the pitch of this Rotation.
 
+        (in radians)  # noqa: E501
 
         :param pitch: The pitch of this Rotation.  # noqa: E501
         :type: float
@@ -104,6 +108,7 @@ class Rotation(object):
     def yaw(self):
         """Gets the yaw of this Rotation.  # noqa: E501
 
+        (in radians)  # noqa: E501
 
         :return: The yaw of this Rotation.  # noqa: E501
         :rtype: float
@@ -114,6 +119,7 @@ class Rotation(object):
     def yaw(self, yaw):
         """Sets the yaw of this Rotation.
 
+        (in radians)  # noqa: E501
 
         :param yaw: The yaw of this Rotation.  # noqa: E501
         :type: float

@@ -58,6 +58,7 @@ class Point(object):
     def x(self):
         """Gets the x of this Point.  # noqa: E501
 
+        (in meters)  # noqa: E501
 
         :return: The x of this Point.  # noqa: E501
         :rtype: float
@@ -68,6 +69,7 @@ class Point(object):
     def x(self, x):
         """Sets the x of this Point.
 
+        (in meters)  # noqa: E501
 
         :param x: The x of this Point.  # noqa: E501
         :type: float
@@ -81,6 +83,7 @@ class Point(object):
     def y(self):
         """Gets the y of this Point.  # noqa: E501
 
+        (in meters)  # noqa: E501
 
         :return: The y of this Point.  # noqa: E501
         :rtype: float
@@ -91,6 +94,7 @@ class Point(object):
     def y(self, y):
         """Sets the y of this Point.
 
+        (in meters)  # noqa: E501
 
         :param y: The y of this Point.  # noqa: E501
         :type: float
@@ -104,6 +108,7 @@ class Point(object):
     def z(self):
         """Gets the z of this Point.  # noqa: E501
 
+        (in meters)  # noqa: E501
 
         :return: The z of this Point.  # noqa: E501
         :rtype: float
@@ -114,6 +119,7 @@ class Point(object):
     def z(self, z):
         """Sets the z of this Point.
 
+        (in meters)  # noqa: E501
 
         :param z: The z of this Point.  # noqa: E501
         :type: float

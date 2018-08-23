@@ -29,6 +29,8 @@ class MotionStatus(object):
     IDLE = "IDLE"
     ZERO_GRAVITY = "ZERO_GRAVITY"
     RUNNING = "RUNNING"
+    MOTION_FAILED = "MOTION_FAILED"
+    EMERGENCY = "EMERGENCY"
 
     """
     Attributes:
