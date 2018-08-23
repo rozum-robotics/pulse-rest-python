@@ -16,19 +16,10 @@
 from __future__ import absolute_import
 
 # import apis into sdk package
-from rozum.rest.client.api.default_api import DefaultApi
+from rozum.rest.client.api import RobotApi
 
 # import ApiClient
 from rozum.rest.client.api_client import ApiClient
 from rozum.rest.client.configuration import Configuration
 # import models into sdk package
-from rozum.rest.client.models.error400 import Error400
-from rozum.rest.client.models.error500 import Error500
-from rozum.rest.client.models.error_pose412 import ErrorPose412
-from rozum.rest.client.models.error_position412 import ErrorPosition412
-from rozum.rest.client.models.motion_status import MotionStatus
-from rozum.rest.client.models.motor_status import MotorStatus
-from rozum.rest.client.models.point import Point
-from rozum.rest.client.models.pose import Pose
-from rozum.rest.client.models.position import Position
-from rozum.rest.client.models.rotation import Rotation
+from rozum.rest.client.models import *
