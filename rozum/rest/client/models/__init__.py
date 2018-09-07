@@ -18,14 +18,17 @@ from __future__ import absolute_import
 from rozum.rest.client.models.error400 import Error400
 from rozum.rest.client.models.error500 import Error500
 from rozum.rest.client.models.error_emergency503 import ErrorEmergency503
+from rozum.rest.client.models.error_port412 import ErrorPort412
 from rozum.rest.client.models.error_pose412 import ErrorPose412
 from rozum.rest.client.models.error_position412 import ErrorPosition412
 from rozum.rest.client.models.motion_status import MotionStatus
+from rozum.rest.client.models.motion_type import MotionType
 from rozum.rest.client.models.motor_status import MotorStatus
 from rozum.rest.client.models.point import Point
 from rozum.rest.client.models.pose import Pose
 from rozum.rest.client.models.position import Position
+from rozum.rest.client.models.recover_state import RecoverState
 from rozum.rest.client.models.rotation import Rotation
 from rozum.rest.client.models.signal import Signal
 from rozum.rest.client.models.tool import Tool
-__all__ = ["MotionStatus", "MotorStatus", "Point", "Pose", "Position", "Rotation", "Signal", "Tool"]
+__all__ = ["MotionStatus", "MotionType", "MotorStatus", "Point", "Pose", "Position", "Rotation", "Signal", "Tool"]

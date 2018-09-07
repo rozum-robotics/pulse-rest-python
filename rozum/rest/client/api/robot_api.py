@@ -494,17 +494,116 @@ class RobotApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def get_digital_input(self, port, **kwargs):  # noqa: E501
+        """Get level of digital input signal  # noqa: E501
+
+        The function returns the actual signal level on the digital input specified in the Port parameter. A digital input is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_digital_input(port, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param int port: The parameter indicates the number of the digital input on the back of the control box where you send the request to get the actual signal level. Since the control box has two digital outputs, the parameter value can be from 1 (corresponds to Relay output 1 on the control box) to 4 (corresponds to Relay output 4 on the control box). (required)
+        :return: Signal
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.get_digital_input_with_http_info(port, **kwargs)  # noqa: E501
+        else:
+            (data) = self.get_digital_input_with_http_info(port, **kwargs)  # noqa: E501
+            return data
+
+    def get_digital_input_with_http_info(self, port, **kwargs):  # noqa: E501
+        """Get level of digital input signal  # noqa: E501
+
+        The function returns the actual signal level on the digital input specified in the Port parameter. A digital input is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.get_digital_input_with_http_info(port, async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :param int port: The parameter indicates the number of the digital input on the back of the control box where you send the request to get the actual signal level. Since the control box has two digital outputs, the parameter value can be from 1 (corresponds to Relay output 1 on the control box) to 4 (corresponds to Relay output 4 on the control box). (required)
+        :return: Signal
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['port']  # noqa: E501
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_digital_input" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'port' is set
+        if ('port' not in params or
+                params['port'] is None):
+            raise ValueError("Missing the required parameter `port` when calling `get_digital_input`")  # noqa: E501
+
+        if 'port' in params and params['port'] > 4:  # noqa: E501
+            raise ValueError("Invalid value for parameter `port` when calling `get_digital_input`, must be a value less than or equal to `4`")  # noqa: E501
+        if 'port' in params and params['port'] < 1:  # noqa: E501
+            raise ValueError("Invalid value for parameter `port` when calling `get_digital_input`, must be a value greater than or equal to `1`")  # noqa: E501
+        collection_formats = {}
+
+        path_params = {}
+        if 'port' in params:
+            path_params['port'] = params['port']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain', 'application/json'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/signal/input/{port}', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='Signal',  # noqa: E501
+            auth_settings=auth_settings,
+            async=params.get('async'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def get_digital_output(self, port, **kwargs):  # noqa: E501
         """Get level of digital output signal  # noqa: E501
 
-        The function get level of digital output signal on the specified port. The port is a number described on which psychical port you want to set high level signal.  # noqa: E501
+        The function returns the actual signal level on the digital output specified in the Port parameter. A digital output is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.get_digital_output(port, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param int port: Number of output digital port that you want to set high level. (required)
+        :param int port: The parameter indicates the number of the digital output on the back of the control box where you send the request to get the actual signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). (required)
         :return: Signal
                  If the method is called asynchronously,
                  returns the request thread.
@@ -519,14 +618,14 @@ class RobotApi(object):
     def get_digital_output_with_http_info(self, port, **kwargs):  # noqa: E501
         """Get level of digital output signal  # noqa: E501
 
-        The function get level of digital output signal on the specified port. The port is a number described on which psychical port you want to set high level signal.  # noqa: E501
+        The function returns the actual signal level on the digital output specified in the Port parameter. A digital output is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.get_digital_output_with_http_info(port, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param int port: Number of output digital port that you want to set high level. (required)
+        :param int port: The parameter indicates the number of the digital output on the back of the control box where you send the request to get the actual signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). (required)
         :return: Signal
                  If the method is called asynchronously,
                  returns the request thread.
@@ -559,10 +658,10 @@ class RobotApi(object):
         collection_formats = {}
 
         path_params = {}
+        if 'port' in params:
+            path_params['port'] = params['port']  # noqa: E501
 
         query_params = []
-        if 'port' in params:
-            query_params.append(('port', params['port']))  # noqa: E501
 
         header_params = {}
 
@@ -578,7 +677,7 @@ class RobotApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/signal', 'GET',
+            '/signal/output/{port}', 'GET',
             path_params,
             query_params,
             header_params,
@@ -1032,6 +1131,180 @@ class RobotApi(object):
             _request_timeout=params.get('_request_timeout'),
             collection_formats=collection_formats)
 
+    def pack(self, **kwargs):  # noqa: E501
+        """Asking the arm to reach a compact pose for transportation  # noqa: E501
+
+        The function commands the robot to reach the pose that may be used for transportation  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.pack(async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.pack_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.pack_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def pack_with_http_info(self, **kwargs):  # noqa: E501
+        """Asking the arm to reach a compact pose for transportation  # noqa: E501
+
+        The function commands the robot to reach the pose that may be used for transportation  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.pack_with_http_info(async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :return: None
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []  # noqa: E501
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method pack" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/pack', 'PUT',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type=None,  # noqa: E501
+            auth_settings=auth_settings,
+            async=params.get('async'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def recover(self, **kwargs):  # noqa: E501
+        """Recover robot after emergency if it is possible.  # noqa: E501
+
+        Recover robot after emergency if it is possible and set motion status to idle.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.recover(async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :return: RecoverState
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async'):
+            return self.recover_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.recover_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def recover_with_http_info(self, **kwargs):  # noqa: E501
+        """Recover robot after emergency if it is possible.  # noqa: E501
+
+        Recover robot after emergency if it is possible and set motion status to idle.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async=True
+        >>> thread = api.recover_with_http_info(async=True)
+        >>> result = thread.get()
+
+        :param async bool
+        :return: RecoverState
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []  # noqa: E501
+        all_params.append('async')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method recover" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/recover', 'PUT',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='RecoverState',  # noqa: E501
+            auth_settings=auth_settings,
+            async=params.get('async'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def relax(self, **kwargs):  # noqa: E501
         """Asking the arm to relax  # noqa: E501
 
@@ -1122,7 +1395,7 @@ class RobotApi(object):
     def run_poses(self, body, speed, **kwargs):  # noqa: E501
         """Asking the arm to move to a pose  # noqa: E501
 
-        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one pose to another. In the trajectory, each waypoint is a set of output flange angles (in degrees) of the six servos in the arm joints. ### Note: Similarly, you can move the arm from one pose to another through one or more waypoints using the PUT/pose function. When the arm is executing a trajectory of PUT/pose waypoints, it stops for a short moment at each preset waypoint. With the PUT/poses/run function, however, the arm moves smoothly though all waypoints without stopping, which reduces the overall time of going from one pose to another.  # noqa: E501
+        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one pose to another. In the trajectory, each waypoint is a set of output flange angles (in degrees) of the six servos in the arm joints. Two motion types supported: linear and joint. Default: joint ### Note: Similarly, you can move the arm from one pose to another through one or more waypoints using the PUT/pose function. When the arm is executing a trajectory of PUT/pose waypoints, it stops for a short moment at each preset waypoint. With the PUT/poses/run function, however, the arm moves smoothly though all waypoints without stopping, which reduces the overall time of going from one pose to another.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.run_poses(body, speed, async=True)
@@ -1130,7 +1403,8 @@ class RobotApi(object):
 
         :param async bool
         :param list[Pose] body: Request Body (required)
-        :param float speed: Speed of Robot (required)
+        :param int speed: Speed of Robot (required)
+        :param str type:
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1145,7 +1419,7 @@ class RobotApi(object):
     def run_poses_with_http_info(self, body, speed, **kwargs):  # noqa: E501
         """Asking the arm to move to a pose  # noqa: E501
 
-        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one pose to another. In the trajectory, each waypoint is a set of output flange angles (in degrees) of the six servos in the arm joints. ### Note: Similarly, you can move the arm from one pose to another through one or more waypoints using the PUT/pose function. When the arm is executing a trajectory of PUT/pose waypoints, it stops for a short moment at each preset waypoint. With the PUT/poses/run function, however, the arm moves smoothly though all waypoints without stopping, which reduces the overall time of going from one pose to another.  # noqa: E501
+        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one pose to another. In the trajectory, each waypoint is a set of output flange angles (in degrees) of the six servos in the arm joints. Two motion types supported: linear and joint. Default: joint ### Note: Similarly, you can move the arm from one pose to another through one or more waypoints using the PUT/pose function. When the arm is executing a trajectory of PUT/pose waypoints, it stops for a short moment at each preset waypoint. With the PUT/poses/run function, however, the arm moves smoothly though all waypoints without stopping, which reduces the overall time of going from one pose to another.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.run_poses_with_http_info(body, speed, async=True)
@@ -1153,13 +1427,14 @@ class RobotApi(object):
 
         :param async bool
         :param list[Pose] body: Request Body (required)
-        :param float speed: Speed of Robot (required)
+        :param int speed: Speed of Robot (required)
+        :param str type:
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body', 'speed']  # noqa: E501
+        all_params = ['body', 'speed', 'type']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1183,6 +1458,10 @@ class RobotApi(object):
                 params['speed'] is None):
             raise ValueError("Missing the required parameter `speed` when calling `run_poses`")  # noqa: E501
 
+        if 'speed' in params and params['speed'] > 100:  # noqa: E501
+            raise ValueError("Invalid value for parameter `speed` when calling `run_poses`, must be a value less than or equal to `100`")  # noqa: E501
+        if 'speed' in params and params['speed'] < 1:  # noqa: E501
+            raise ValueError("Invalid value for parameter `speed` when calling `run_poses`, must be a value greater than or equal to `1`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -1190,6 +1469,8 @@ class RobotApi(object):
         query_params = []
         if 'speed' in params:
             query_params.append(('speed', params['speed']))  # noqa: E501
+        if 'type' in params:
+            query_params.append(('type', params['type']))  # noqa: E501
 
         header_params = {}
 
@@ -1229,7 +1510,7 @@ class RobotApi(object):
     def run_positions(self, body, speed, **kwargs):  # noqa: E501
         """Asking the arm to move to a position  # noqa: E501
 
-        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one position to another. In the trajectory, each waypoint is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the distance (in meters) from the zero point to the desired TCP along the x, y, and z axes accordingly. _Roll_ stands for the desired TCP rotation angle around the x axis; _pitch_ - the desired TCP rotation angle around the y axis; _yaw_ - the desired TCP rotation angle around the z axis. All rotation angles are in radians.  # noqa: E501
+        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one position to another. Two motion types supported: linear and joint. Default: joint In the trajectory, each waypoint is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the distance (in meters) from the zero point to the desired TCP along the x, y, and z axes accordingly. _Roll_ stands for the desired TCP rotation angle around the x axis; _pitch_ - the desired TCP rotation angle around the y axis; _yaw_ - the desired TCP rotation angle around the z axis. All rotation angles are in radians.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.run_positions(body, speed, async=True)
@@ -1237,7 +1518,8 @@ class RobotApi(object):
 
         :param async bool
         :param list[Position] body: Request Body (required)
-        :param float speed: Speed of Robot (required)
+        :param int speed: Speed of Robot (required)
+        :param str type:
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1252,7 +1534,7 @@ class RobotApi(object):
     def run_positions_with_http_info(self, body, speed, **kwargs):  # noqa: E501
         """Asking the arm to move to a position  # noqa: E501
 
-        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one position to another. In the trajectory, each waypoint is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the distance (in meters) from the zero point to the desired TCP along the x, y, and z axes accordingly. _Roll_ stands for the desired TCP rotation angle around the x axis; _pitch_ - the desired TCP rotation angle around the y axis; _yaw_ - the desired TCP rotation angle around the z axis. All rotation angles are in radians.  # noqa: E501
+        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one position to another. Two motion types supported: linear and joint. Default: joint In the trajectory, each waypoint is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the distance (in meters) from the zero point to the desired TCP along the x, y, and z axes accordingly. _Roll_ stands for the desired TCP rotation angle around the x axis; _pitch_ - the desired TCP rotation angle around the y axis; _yaw_ - the desired TCP rotation angle around the z axis. All rotation angles are in radians.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.run_positions_with_http_info(body, speed, async=True)
@@ -1260,13 +1542,14 @@ class RobotApi(object):
 
         :param async bool
         :param list[Position] body: Request Body (required)
-        :param float speed: Speed of Robot (required)
+        :param int speed: Speed of Robot (required)
+        :param str type:
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body', 'speed']  # noqa: E501
+        all_params = ['body', 'speed', 'type']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1290,6 +1573,10 @@ class RobotApi(object):
                 params['speed'] is None):
             raise ValueError("Missing the required parameter `speed` when calling `run_positions`")  # noqa: E501
 
+        if 'speed' in params and params['speed'] > 100:  # noqa: E501
+            raise ValueError("Invalid value for parameter `speed` when calling `run_positions`, must be a value less than or equal to `100`")  # noqa: E501
+        if 'speed' in params and params['speed'] < 1:  # noqa: E501
+            raise ValueError("Invalid value for parameter `speed` when calling `run_positions`, must be a value greater than or equal to `1`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -1297,6 +1584,8 @@ class RobotApi(object):
         query_params = []
         if 'speed' in params:
             query_params.append(('speed', params['speed']))  # noqa: E501
+        if 'type' in params:
+            query_params.append(('type', params['type']))  # noqa: E501
 
         header_params = {}
 
@@ -1336,14 +1625,14 @@ class RobotApi(object):
     def set_digital_output_high(self, port, **kwargs):  # noqa: E501
         """Set high level of digital output signal  # noqa: E501
 
-        The function set high level of digital output signal on the specified port. The port is a number described on which psychical port you want to set high level signal.  # noqa: E501
+        The function sets the digital output specified in the Port parameter to the HIGH signal level. A digital output is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.set_digital_output_high(port, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param int port: Number of output digital port that you want to set high level. (required)
+        :param int port: The parameter indicates the number of the digital output on the back of the control box that you want to set to the HIGH signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1358,14 +1647,14 @@ class RobotApi(object):
     def set_digital_output_high_with_http_info(self, port, **kwargs):  # noqa: E501
         """Set high level of digital output signal  # noqa: E501
 
-        The function set high level of digital output signal on the specified port. The port is a number described on which psychical port you want to set high level signal.  # noqa: E501
+        The function sets the digital output specified in the Port parameter to the HIGH signal level. A digital output is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.set_digital_output_high_with_http_info(port, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param int port: Number of output digital port that you want to set high level. (required)
+        :param int port: The parameter indicates the number of the digital output on the back of the control box that you want to set to the HIGH signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1398,10 +1687,10 @@ class RobotApi(object):
         collection_formats = {}
 
         path_params = {}
+        if 'port' in params:
+            path_params['port'] = params['port']  # noqa: E501
 
         query_params = []
-        if 'port' in params:
-            query_params.append(('port', params['port']))  # noqa: E501
 
         header_params = {}
 
@@ -1417,7 +1706,7 @@ class RobotApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/signal/high', 'PUT',
+            '/signal/output/{port}/high', 'PUT',
             path_params,
             query_params,
             header_params,
@@ -1435,14 +1724,14 @@ class RobotApi(object):
     def set_digital_output_low(self, port, **kwargs):  # noqa: E501
         """Set low level of digital output signal  # noqa: E501
 
-        The function set low level of digital output signal on the specified port. The port is a number described on which psychical port you want to set low level signal.  # noqa: E501
+        The function sets the digital output specified in the Port parameter to the LOW signal level. A digital output is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.set_digital_output_low(port, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param int port: Number of output digital port that you want to set low level. (required)
+        :param int port: The parameter indicates the number of the digital output on the back of the control box that you want to set to the LOW signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1457,14 +1746,14 @@ class RobotApi(object):
     def set_digital_output_low_with_http_info(self, port, **kwargs):  # noqa: E501
         """Set low level of digital output signal  # noqa: E501
 
-        The function set low level of digital output signal on the specified port. The port is a number described on which psychical port you want to set low level signal.  # noqa: E501
+        The function sets the digital output specified in the Port parameter to the LOW signal level. A digital output is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.set_digital_output_low_with_http_info(port, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param int port: Number of output digital port that you want to set low level. (required)
+        :param int port: The parameter indicates the number of the digital output on the back of the control box that you want to set to the LOW signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1497,10 +1786,10 @@ class RobotApi(object):
         collection_formats = {}
 
         path_params = {}
+        if 'port' in params:
+            path_params['port'] = params['port']  # noqa: E501
 
         query_params = []
-        if 'port' in params:
-            query_params.append(('port', params['port']))  # noqa: E501
 
         header_params = {}
 
@@ -1516,7 +1805,7 @@ class RobotApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/signal/low', 'PUT',
+            '/signal/output/{port}/low', 'PUT',
             path_params,
             query_params,
             header_params,
@@ -1542,7 +1831,8 @@ class RobotApi(object):
 
         :param async bool
         :param Pose body: Request Body (required)
-        :param float speed: Speed of Robot (required)
+        :param int speed: Speed of Robot (required)
+        :param str type:
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1565,13 +1855,14 @@ class RobotApi(object):
 
         :param async bool
         :param Pose body: Request Body (required)
-        :param float speed: Speed of Robot (required)
+        :param int speed: Speed of Robot (required)
+        :param str type:
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body', 'speed']  # noqa: E501
+        all_params = ['body', 'speed', 'type']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1595,6 +1886,10 @@ class RobotApi(object):
                 params['speed'] is None):
             raise ValueError("Missing the required parameter `speed` when calling `set_pose`")  # noqa: E501
 
+        if 'speed' in params and params['speed'] > 100:  # noqa: E501
+            raise ValueError("Invalid value for parameter `speed` when calling `set_pose`, must be a value less than or equal to `100`")  # noqa: E501
+        if 'speed' in params and params['speed'] < 1:  # noqa: E501
+            raise ValueError("Invalid value for parameter `speed` when calling `set_pose`, must be a value greater than or equal to `1`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -1602,6 +1897,8 @@ class RobotApi(object):
         query_params = []
         if 'speed' in params:
             query_params.append(('speed', params['speed']))  # noqa: E501
+        if 'type' in params:
+            query_params.append(('type', params['type']))  # noqa: E501
 
         header_params = {}
 
@@ -1649,7 +1946,8 @@ class RobotApi(object):
 
         :param async bool
         :param Position body: Request Body (required)
-        :param float speed: Speed of Robot (required)
+        :param int speed: Speed of Robot (required)
+        :param str type:
         :return: Position
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1672,13 +1970,14 @@ class RobotApi(object):
 
         :param async bool
         :param Position body: Request Body (required)
-        :param float speed: Speed of Robot (required)
+        :param int speed: Speed of Robot (required)
+        :param str type:
         :return: Position
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body', 'speed']  # noqa: E501
+        all_params = ['body', 'speed', 'type']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1702,6 +2001,10 @@ class RobotApi(object):
                 params['speed'] is None):
             raise ValueError("Missing the required parameter `speed` when calling `set_position`")  # noqa: E501
 
+        if 'speed' in params and params['speed'] > 100:  # noqa: E501
+            raise ValueError("Invalid value for parameter `speed` when calling `set_position`, must be a value less than or equal to `100`")  # noqa: E501
+        if 'speed' in params and params['speed'] < 1:  # noqa: E501
+            raise ValueError("Invalid value for parameter `speed` when calling `set_position`, must be a value greater than or equal to `1`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -1709,6 +2012,8 @@ class RobotApi(object):
         query_params = []
         if 'speed' in params:
             query_params.append(('speed', params['speed']))  # noqa: E501
+        if 'type' in params:
+            query_params.append(('type', params['type']))  # noqa: E501
 
         header_params = {}
 
