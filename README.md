@@ -22,7 +22,7 @@ try:
     # execute desired actions
     robot.set_pose(pose, SPEED)
     robot.await_motion()
-    robot.set_position(position, SPEED)
+    robot.set_position(position, SPEED, rr.MotionType.LINEAR)
     robot.await_motion()
     # get some information
     status_motors = robot.status_motors()
@@ -39,17 +39,20 @@ Method | HTTP request | Description
 [**close_gripper**](README.md#close_gripper) | **PUT** /gripper/close | Asking the arm to close the gripper
 [**freeze**](README.md#freeze) | **PUT** /freeze | Asking the arm to go to the freeze state
 [**get_base**](README.md#get_base) | **GET** /base | Getting the actual position of the arm base
-[**get_digital_output**](README.md#get_digital_output) | **GET** /signal | Get level of digital output signal
+[**get_digital_input**](README.md#get_digital_input) | **GET** /signal/input/{port} | Get level of digital input signal
+[**get_digital_output**](README.md#get_digital_output) | **GET** /signal/output/{port} | Get level of digital output signal
 [**get_pose**](README.md#get_pose) | **GET** /pose | Getting the actual arm pose
 [**get_position**](README.md#get_position) | **GET** /position | Getting the actual arm position
 [**get_tool**](README.md#get_tool) | **GET** /tool | Getting actual tool properties
 [**identifier**](README.md#identifier) | **GET** /robot/id | Getting the arm ID
 [**open_gripper**](README.md#open_gripper) | **PUT** /gripper/open | Asking the arm to open the gripper
+[**pack**](README.md#pack) | **PUT** /pack | Asking the arm to reach a compact pose for transportation
+[**recover**](README.md#recover) | **PUT** /recover | Recover robot after emergency if it is possible.
 [**relax**](README.md#relax) | **PUT** /relax | Asking the arm to relax
 [**run_poses**](README.md#run_poses) | **PUT** /poses/run | Asking the arm to move to a pose
 [**run_positions**](README.md#run_positions) | **PUT** /positions/run | Asking the arm to move to a position
-[**set_digital_output_high**](README.md#set_digital_output_high) | **PUT** /signal/high | Set high level of digital output signal
-[**set_digital_output_low**](README.md#set_digital_output_low) | **PUT** /signal/low | Set low level of digital output signal
+[**set_digital_output_high**](README.md#set_digital_output_high) | **PUT** /signal/output/{port}/high | Set high level of digital output signal
+[**set_digital_output_low**](README.md#set_digital_output_low) | **PUT** /signal/output/{port}/low | Set low level of digital output signal
 [**set_pose**](README.md#set_pose) | **PUT** /pose | Setting a new arm pose
 [**set_position**](README.md#set_position) | **PUT** /position | Setting a new arm position
 [**status_motion**](README.md#status_motion) | **GET** /status/motion | Getting the actual motion status
@@ -128,6 +131,22 @@ This endpoint does not need any parameter.
 
 #### Return type
 **Position**
+
+### **get_digital_input**
+> Signal robot.get_digital_input(port)
+
+Get level of digital input signal
+
+The function returns the actual signal level on the digital input specified in the Port parameter. A digital input is a physical port on the back panel of the control box that controls the robotic arm.
+
+#### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **port** | **int**| The parameter indicates the number of the digital input on the back of the control box where you send the request to get the actual signal level. Since the control box has two digital outputs, the parameter value can be from 1 (corresponds to Relay output 1 on the control box) to 4 (corresponds to Relay output 4 on the control box). | 
+
+#### Return type
+**Signal**
 
 ### **get_digital_output**
 > Signal robot.get_digital_output(port)
@@ -212,6 +231,32 @@ Name | Type | Description  | Notes
 
 #### Return type
 None
+
+### **pack**
+> robot.pack()
+
+Asking the arm to reach a compact pose for transportation
+
+The function commands the robot to reach the pose that may be used for transportation
+
+#### Parameters
+This endpoint does not need any parameter.
+
+#### Return type
+None
+
+### **recover**
+> RecoverState robot.recover()
+
+Recover robot after emergency if it is possible.
+
+Recover robot after emergency if it is possible and set motion status to idle.
+
+#### Parameters
+This endpoint does not need any parameter.
+
+#### Return type
+**RecoverState**
 
 ### **relax**
 > robot.relax()
