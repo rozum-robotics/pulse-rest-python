@@ -1,5 +1,6 @@
+from __future__ import absolute_import
 from rozum.rest.client import RobotApi
-from rozum.rest.client.models import MotionStatus
+from rozum.rest.client.models import MotionStatus, MotionType
 import time
 
 
@@ -26,6 +27,9 @@ class Robot(object):
     def get_base(self):
         return self._api.get_base()
 
+    def get_digital_input(self, port):
+        return self._api.get_digital_input(port)
+
     def get_digital_output(self, port):
         return self._api.get_digital_output(port)
 
@@ -46,14 +50,20 @@ class Robot(object):
             return self._api.open_gripper(timeout=timeout)
         return self._api.open_gripper()
 
+    def pack(self):
+        return self._api.pack()
+
+    def recover(self):
+        return self._api.recover()
+
     def relax(self):
         return self._api.relax()
 
-    def run_poses(self, poses, speed):
-        return self._api.run_poses(poses, speed=speed)
+    def run_poses(self, poses, speed, type=MotionType.JOINT):
+        return self._api.run_poses(poses, speed=speed, type=type)
 
-    def run_positions(self, positions, speed):
-        return self._api.run_positions(positions, speed=speed)
+    def run_positions(self, positions, speed, type=MotionType.JOINT):
+        return self._api.run_positions(positions, speed=speed, type=type)
 
     def set_digital_output_high(self, port):
         return self._api.set_digital_output_high(port)
@@ -61,11 +71,11 @@ class Robot(object):
     def set_digital_output_low(self, port):
         return self._api.set_digital_output_low(port)
 
-    def set_pose(self, pose, speed):
-        return self._api.set_pose(pose, speed=speed)
+    def set_pose(self, pose, speed, type=MotionType.JOINT):
+        return self._api.set_pose(pose, speed=speed, type=type)
 
-    def set_position(self, position, speed):
-        return self._api.set_position(position, speed=speed)
+    def set_position(self, position, speed, type=MotionType.JOINT):
+        return self._api.set_position(position, speed=speed, type=type)
 
     def status_motion(self):
         return self._api.status_motion()
