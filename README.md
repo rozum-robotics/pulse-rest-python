@@ -322,7 +322,7 @@ Name | Type | Description  | Notes
 **str**
 
 ### **set_digital_output_low**
-> str set_digital_output_low(port)
+> str robot.set_digital_output_low(port)
 
 Set low level of digital output signal
 
