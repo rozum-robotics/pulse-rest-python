@@ -79,7 +79,7 @@ Name | Type | Description  | Notes
 
 Setting tool properties
 
-The function enables setting new TCP to account for the properties of an attached or changed work tool. The tool properties define the following: - _name_ - any random name of the work tool defined by the user (e.g., \"gripper\") - _position_ - a set of x, y, and z coordinates and rotation angles - _roll_, _pitch_, and _yaw_. The coordinates define the actual distance (in meters) from the arm's zero point to the new TCP along the x, y, and z axes accordingly. _Roll_ stands for the rotation angle of the new TCP around the x axis; _pitch_ - the rotation angle around the y axis; _yaw_ - the rotation angle of the new TCP around the z axis. All rotation angles are in radians. - _radius_ - radius of the work tool (in meters) measured from its physical center point.
+The function enables setting new TCP to account for the properties of an attached or changed work tool. The tool properties define the following: - _name_ - any random name of the work tool defined by the user (e.g., "gripper") - _position_ - a set of x, y, and z coordinates and rotation angles - _roll_, _pitch_, and _yaw_. The coordinates define the actual distance (in meters) from the arm's zero point to the new TCP along the x, y, and z axes accordingly. _Roll_ stands for the rotation angle of the new TCP around the x axis; _pitch_ - the rotation angle around the y axis; _yaw_ - the rotation angle of the new TCP around the z axis. All rotation angles are in radians. - _radius_ - radius of the work tool (in meters) measured from its physical center point.
 
 #### Parameters
 
@@ -95,7 +95,7 @@ Name | Type | Description  | Notes
 
 Asking the arm to close the gripper
 
-The function commands the robot to close the gripper. It has no request body, but the user can optionally set how long (in milliseconds) the arm should remain idle, waiting for the gripper to close. The default manufacturer-preset value is 500 ms. ### Note: Setting the parameter, it is recommended to use values above 0 ms.
+The function commands the robot to close the gripper. It has no request body, but the user can optionally set how long (in milliseconds) the arm should remain idle, waiting for the gripper to close. The default manufacturer-preset value is 500 ms. _Note:_ Setting the parameter, it is recommended to use values above 0 ms.
 
 #### Parameters
 
@@ -111,7 +111,7 @@ None
 
 Asking the arm to go to the freeze state
 
-The function sets the arm in the \"freeze\" state. The arm stops moving, retaining its last position. ### Note: In the state, it is not advisable to move the arm by hand as this can cause damage to its components.
+The function sets the arm in the "freeze" state. The arm stops moving, retaining its last position. _Note:_ In the state, it is not advisable to move the arm by hand as this can cause damage to its components.
 
 #### Parameters
 This endpoint does not need any parameter.
@@ -137,13 +137,13 @@ This endpoint does not need any parameter.
 
 Get level of digital input signal
 
-The function returns the actual signal level on the digital input specified in the Port parameter. A digital input is a physical port on the back panel of the control box that controls the robotic arm.
+The function returns the actual signal level on the digital input specified in the {port} parameter of the request path.
 
 #### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **port** | **int**| The parameter indicates the number of the digital input on the back of the control box where you send the request to get the actual signal level. Since the control box has two digital outputs, the parameter value can be from 1 (corresponds to Relay output 1 on the control box) to 4 (corresponds to Relay output 4 on the control box). | 
+ **port** | **int**| The parameter indicates the number of a digital input is a physical port on the back panel of the control box. Since the control box has four digital inputs (DI), the parameter can have any integral value between 1 (corresponds to DI1) and 4 (corresponds to DI4). | 
 
 #### Return type
 **Signal**
@@ -153,14 +153,14 @@ Name | Type | Description  | Notes
 
 Get level of digital output signal
 
-The function returns the actual signal level on the digital output specified in the Port parameter. A digital output is a physical port on the back panel of the control box that controls the robotic arm.
+The function returns the actual signal level on the digital output specified in the {port} parameter of the request path.
 
 #### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **port** | **int**| The parameter indicates the number of the digital output on the back of the control box where you send the request to get the actual signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). | 
-
+ **port** | **int**| The parameter indicates the number of a digital output is a physical port on the back panel of the control box. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1) or 2 (corresponds to Relay output 2). | 
+ 
 #### Return type
 **Signal**
 
@@ -195,7 +195,7 @@ This endpoint does not need any parameter.
 
 Getting actual tool properties
 
-The function returns the actual TCP position that accounts for the offset from the original TCP due to attaching/changing the work tool. The actual TCP position is described as a set of the following properties: - _name_ - any random name of the work tool defined by the user (e.g., \"gripper\") - _position_ - x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the distance (in meters) from the arm's zero point to the actual TCP along the x, y, and z axes accordingly. _Roll_ stands for the actual TCP rotation angle around the x axis; _pitch_ - the actual TCP rotation angle around the y axis; _yaw_ - the actual TCP rotation angle around the z axis. All rotation angles are in radians. - _radius_ - radius of the work tool (in meters) measured from its center point.
+The function returns the actual TCP position that accounts for the offset from the original TCP due to attaching/changing the work tool. The actual TCP position is described as a set of the following properties: - _name_ - any random name of the work tool defined by the user (e.g., "gripper") - _position_ - x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the distance (in meters) from the arm's zero point to the actual TCP along the x, y, and z axes accordingly. _Roll_ stands for the actual TCP rotation angle around the x axis; _pitch_ - the actual TCP rotation angle around the y axis; _yaw_ - the actual TCP rotation angle around the z axis. All rotation angles are in radians. - _radius_ - radius of the work tool (in meters) measured from its center point.
 
 #### Parameters
 This endpoint does not need any parameter.
@@ -221,7 +221,7 @@ This endpoint does not need any parameter.
 
 Asking the arm to open the gripper
 
-The function commands the robot to open the gripper. It has no request body, but the user can optionally set how long (in milliseconds) the arm should remain idle, waiting for the gripper to open. The default manufacturer-preset value is 500 ms. ### Note: Setting the parameter, it is recommended to use values above 0 ms.
+The function commands the robot to open the gripper. It has no request body, but the user can optionally set how long (in milliseconds) the arm should remain idle, waiting for the gripper to open. The default manufacturer-preset value is 500 ms. _Note:_ Setting the parameter, it is recommended to use values above 0 ms.
 
 #### Parameters
 
@@ -250,7 +250,7 @@ None
 
 Recover robot after emergency if it is possible.
 
-Recover robot after emergency if it is possible and set motion status to idle.
+The function recovers the arm after an emergency, setting its motion status to IDLE. Recovery is possible only after an emergency that is not fatal—corresponding to the ERROR status.
 
 #### Parameters
 This endpoint does not need any parameter.
@@ -263,7 +263,7 @@ This endpoint does not need any parameter.
 
 Asking the arm to relax
 
-The function sets the arm in the \"relaxed\" state. The arm stops moving without retaining its last position. In this state, the user can move the robotic arm by hand (e.g., to verify/test a motion trajectory).
+The function sets the arm in the "relaxed" state. The arm stops moving without retaining its last position. In this state, the user can move the robotic arm by hand (e.g., to verify/test a motion trajectory).
 
 #### Parameters
 This endpoint does not need any parameter.
@@ -276,14 +276,15 @@ None
 
 Asking the arm to move to a pose
 
-The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one pose to another. In the trajectory, each waypoint is a set of output flange angles (in degrees) of the six servos in the arm joints. Two motion types supported: linear and joint. Default: joint ### Note: Similarly, you can move the arm from one pose to another through one or more waypoints using the PUT/pose function. When the arm is executing a trajectory of PUT/pose waypoints, it stops for a short moment at each preset waypoint. With the PUT/poses/run function, however, the arm moves smoothly though all waypoints without stopping, which reduces the overall time of going from one pose to another.
+The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one pose to another. In the trajectory, each waypoint is a set of output flange angles (in degrees) of the six servos in the arm joints. Two motion types supported: linear and joint. Default: joint. _Note:_ Similarly, you can move the arm from one pose to another through one or more waypoints using the PUT/pose function. When the arm is executing a trajectory of PUT/pose waypoints, it stops for a short moment at each preset waypoint. With the PUT/poses/run function, however, the arm moves smoothly though all waypoints without stopping, which reduces the overall time of going from one pose to another.
 
 #### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **poses** | **list[Pose]** | Request Body | 
- **speed** | **float**| Speed of Robot | 
+ **poses** | [**list[Pose]**]| Request Body | 
+ **speed** | **int**| Speed of Robot | 
+ **type** | **MotionType**|  | [optional], default: JOINT
 
 #### Return type
 **str**
@@ -293,14 +294,15 @@ Name | Type | Description  | Notes
 
 Asking the arm to move to a position
 
-The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one position to another. Two motion types supported: linear and joint. Default: joint In the trajectory, each waypoint is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the distance (in meters) from the zero point to the desired TCP along the x, y, and z axes accordingly. _Roll_ stands for the desired TCP rotation angle around the x axis; _pitch_ - the desired TCP rotation angle around the y axis; _yaw_ - the desired TCP rotation angle around the z axis. All rotation angles are in radians.
+The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one position to another. Two motion types supported: linear and joint. Default: joint. In the trajectory, each waypoint is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the distance (in meters) from the zero point to the desired TCP along the x, y, and z axes accordingly. _Roll_ stands for the desired TCP rotation angle around the x axis; _pitch_ - the desired TCP rotation angle around the y axis; _yaw_ - the desired TCP rotation angle around the z axis. All rotation angles are in radians.
 
 #### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **positions** | **list[Position]** | Request Body | 
- **speed** | **float** | Speed of Robot | 
+ **positions** | [**list[Position]**]| Request Body | 
+ **speed** | **int**| Speed of Robot | 
+ **type** | **MotionType**|  | [optional], default: JOINT
 
 #### Return type
 **str**
@@ -310,14 +312,14 @@ Name | Type | Description  | Notes
 
 Set high level of digital output signal
 
-The function sets the digital output specified in the Port parameter to the HIGH signal level. A digital output is a physical port on the back panel of the control box that controls the robotic arm.
+The function sets the digital output specified in the {port} parameter of the request path to the HIGH signal level.
 
 #### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **port** | **int**| The parameter indicates the number of the digital output on the back of the control box that you want to set to the HIGH signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). | 
-
+ **port** | **int**| The parameter indicates the number of a digital output is a physical port on the back panel of the control box. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1) or 2 (corresponds to Relay output 2). | 
+ 
 #### Return type
 **str**
 
@@ -332,8 +334,8 @@ The function sets the digital output specified in the Port parameter to the LOW 
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **port** | **int**| The parameter indicates the number of the digital output on the back of the control box that you want to set to the LOW signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). | 
-
+ **port** | **int**| The parameter indicates the number of the digital output on the back of the control box that you want to set to the LOW signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). |
+ 
 #### Return type
 **str**
 
@@ -342,14 +344,15 @@ Name | Type | Description  | Notes
 
 Setting a new arm pose
 
-The function commands the arm to move to a new pose. A pose is described as a set of output flange angles (in degrees) of the six servos integrated into the robot joints.
+The function commands the arm to move to a new pose. A pose is described as a set of output flange angles (in degrees) of the six servos integrated into the robot joints. Two motion types supported: linear and joint. Default: joint.
 
 #### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pose** | **Pose** | Request Body | 
- **speed** | **float**| Speed of Robot | 
+ **speed** | **int**| Speed of Robot | 
+ **type** | **MotionType**|  | [optional] default: JOINT
 
 #### Return type
 **str**
@@ -359,14 +362,15 @@ Name | Type | Description  | Notes
 
 Setting a new arm position
 
-The function commands the arm to move to a new position. The position is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the desired distance (in meters) from the zero point to the TCP along the x, y, and z axes accordingly. _Roll_ stands for the desired TCP rotation angle around the x axis; _pitch_ - the desired TCP rotation angle around the y axis; _yaw_ - the desired TCP rotation angle around the z axis. All rotation angles are in radians.
+The function commands the arm to move to a new position. Two motion types supported: linear and joint. Default: joint. The position is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the desired distance (in meters) from the zero point to the TCP along the x, y, and z axes accordingly. _Roll_ stands for the desired TCP rotation angle around the x axis; _pitch_ - the desired TCP rotation angle around the y axis; _yaw_ - the desired TCP rotation angle around the z axis. All rotation angles are in radians.
 
 #### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **position** | **Position** | Request Body | 
- **speed** | **float** | Speed of Robot | 
+ **speed** | **int**| Speed of Robot | 
+ **type** | **MotionType**|  | [optional] default: JOINT
 
 #### Return type
 **str**
