@@ -272,7 +272,7 @@ This endpoint does not need any parameter.
 None
 
 ### **run_poses**
-> str robot.run_poses(poses, speed, type=type)
+> str robot.run_poses(poses, speed, type=type, tcp_max_velocity=tcp_max_velocity)
 
 Asking the arm to move to a pose
 
@@ -285,12 +285,14 @@ Name | Type | Description  | Notes
  **poses** | [**list[Pose]**]| Request Body | 
  **speed** | **int**| Speed of Robot | 
  **type** | **MotionType**|  | [optional], default: JOINT
+  **tcp_max_velocity** | **float**| The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s. | [optional] 
+
 
 #### Return type
 **str**
 
 ### **run_positions**
-> str robot.run_positions(positions, speed, type=type)
+> str robot.run_positions(positions, speed, type=type, tcp_max_velocity=tcp_max_velocity)
 
 Asking the arm to move to a position
 
@@ -303,6 +305,7 @@ Name | Type | Description  | Notes
  **positions** | [**list[Position]**]| Request Body | 
  **speed** | **int**| Speed of Robot | 
  **type** | **MotionType**|  | [optional], default: JOINT
+ **tcp_max_velocity** | **float**| The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s. | [optional] 
 
 #### Return type
 **str**
@@ -340,7 +343,7 @@ Name | Type | Description  | Notes
 **str**
 
 ### **set_pose**
-> str robot.set_pose(pose, speed, type=type)
+> str robot.set_pose(pose, speed, type=type, tcp_max_velocity=tcp_max_velocity)
 
 Setting a new arm pose
 
@@ -352,13 +355,14 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **pose** | **Pose** | Request Body | 
  **speed** | **int**| Speed of Robot | 
- **type** | **MotionType**|  | [optional] default: JOINT
+ **type** | **MotionType** |  | [optional] default: JOINT
+ **tcp_max_velocity** | **float**| The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s. | [optional] 
 
 #### Return type
 **str**
 
 ### **set_position**
-> str robot.set_position(position, speed)
+> str robot.set_position(position, speed, type=type, tcp_max_velocity=tcp_max_velocity)
 
 Setting a new arm position
 
@@ -370,7 +374,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **position** | **Position** | Request Body | 
  **speed** | **int**| Speed of Robot | 
- **type** | **MotionType**|  | [optional] default: JOINT
+ **type** | **MotionType** |  | [optional] default: JOINT
+ **tcp_max_velocity** | **float**| The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s. | [optional] 
 
 #### Return type
 **str**

@@ -59,11 +59,11 @@ class Robot(object):
     def relax(self):
         return self._api.relax()
 
-    def run_poses(self, poses, speed, type=MotionType.JOINT):
-        return self._api.run_poses(poses, speed=speed, type=type)
+    def run_poses(self, poses, speed, type=MotionType.JOINT, tcp_max_velocity=2.0):
+        return self._api.run_poses(poses, speed=speed, type=type, tcp_max_velocity=tcp_max_velocity)
 
-    def run_positions(self, positions, speed, type=MotionType.JOINT):
-        return self._api.run_positions(positions, speed=speed, type=type)
+    def run_positions(self, positions, speed, type=MotionType.JOINT, tcp_max_velocity=2.0):
+        return self._api.run_positions(positions, speed=speed, type=type, tcp_max_velocity=tcp_max_velocity)
 
     def set_digital_output_high(self, port):
         return self._api.set_digital_output_high(port)
@@ -71,11 +71,11 @@ class Robot(object):
     def set_digital_output_low(self, port):
         return self._api.set_digital_output_low(port)
 
-    def set_pose(self, pose, speed, type=MotionType.JOINT):
-        return self._api.set_pose(pose, speed=speed, type=type)
+    def set_pose(self, pose, speed, type=MotionType.JOINT, tcp_max_velocity=2.0):
+        return self._api.set_pose(pose, speed=speed, type=type, tcp_max_velocity=tcp_max_velocity)
 
-    def set_position(self, position, speed, type=MotionType.JOINT):
-        return self._api.set_position(position, speed=speed, type=type)
+    def set_position(self, position, speed, type=MotionType.JOINT, tcp_max_velocity=2.0):
+        return self._api.set_position(position, speed=speed, type=type, tcp_max_velocity=tcp_max_velocity)
 
     def status_motion(self):
         return self._api.status_motion()
