@@ -13,6 +13,8 @@
 
 from __future__ import absolute_import
 
+import re  # noqa: F401
+
 # python 2 and python 3 compatibility library
 import six
 
@@ -124,7 +126,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Position',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -223,7 +225,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Tool',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -240,7 +242,7 @@ class RobotApi(object):
 
         :param async bool
         :param float timeout: Time in milliseconds to wait for gripper closing
-        :return: None
+        :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -262,7 +264,7 @@ class RobotApi(object):
 
         :param async bool
         :param float timeout: Time in milliseconds to wait for gripper closing
-        :return: None
+        :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -312,9 +314,9 @@ class RobotApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -330,7 +332,7 @@ class RobotApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :return: None
+        :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -351,7 +353,7 @@ class RobotApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :return: None
+        :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -399,9 +401,9 @@ class RobotApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -488,7 +490,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Position',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -497,14 +499,14 @@ class RobotApi(object):
     def get_digital_input(self, port, **kwargs):  # noqa: E501
         """Get level of digital input signal  # noqa: E501
 
-        The function returns the actual signal level on the digital input specified in the Port parameter. A digital input is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
+        The function returns the actual signal level on the digital input specified in the {port} parameter of the request path.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.get_digital_input(port, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param int port: The parameter indicates the number of the digital input on the back of the control box where you send the request to get the actual signal level. Since the control box has two digital outputs, the parameter value can be from 1 (corresponds to Relay output 1 on the control box) to 4 (corresponds to Relay output 4 on the control box). (required)
+        :param int port: The parameter indicates the number of a digital input is a physical port on the back panel of the control box. Since the control box has four digital inputs (DI), the parameter can have any integral value between 1 (corresponds to DI1) and 4 (corresponds to DI4). (required)
         :return: Signal
                  If the method is called asynchronously,
                  returns the request thread.
@@ -519,14 +521,14 @@ class RobotApi(object):
     def get_digital_input_with_http_info(self, port, **kwargs):  # noqa: E501
         """Get level of digital input signal  # noqa: E501
 
-        The function returns the actual signal level on the digital input specified in the Port parameter. A digital input is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
+        The function returns the actual signal level on the digital input specified in the {port} parameter of the request path.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.get_digital_input_with_http_info(port, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param int port: The parameter indicates the number of the digital input on the back of the control box where you send the request to get the actual signal level. Since the control box has two digital outputs, the parameter value can be from 1 (corresponds to Relay output 1 on the control box) to 4 (corresponds to Relay output 4 on the control box). (required)
+        :param int port: The parameter indicates the number of a digital input is a physical port on the back panel of the control box. Since the control box has four digital inputs (DI), the parameter can have any integral value between 1 (corresponds to DI1) and 4 (corresponds to DI4). (required)
         :return: Signal
                  If the method is called asynchronously,
                  returns the request thread.
@@ -587,7 +589,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Signal',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -596,14 +598,14 @@ class RobotApi(object):
     def get_digital_output(self, port, **kwargs):  # noqa: E501
         """Get level of digital output signal  # noqa: E501
 
-        The function returns the actual signal level on the digital output specified in the Port parameter. A digital output is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
+        The function returns the actual signal level on the digital output specified in the {port} parameter of the request path.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.get_digital_output(port, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param int port: The parameter indicates the number of the digital output on the back of the control box where you send the request to get the actual signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). (required)
+        :param int port: The parameter indicates the number of a digital output is a physical port on the back panel of the control box. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1) or 2 (corresponds to Relay output 2). (required)
         :return: Signal
                  If the method is called asynchronously,
                  returns the request thread.
@@ -618,14 +620,14 @@ class RobotApi(object):
     def get_digital_output_with_http_info(self, port, **kwargs):  # noqa: E501
         """Get level of digital output signal  # noqa: E501
 
-        The function returns the actual signal level on the digital output specified in the Port parameter. A digital output is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
+        The function returns the actual signal level on the digital output specified in the {port} parameter of the request path.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.get_digital_output_with_http_info(port, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param int port: The parameter indicates the number of the digital output on the back of the control box where you send the request to get the actual signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). (required)
+        :param int port: The parameter indicates the number of a digital output is a physical port on the back panel of the control box. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1) or 2 (corresponds to Relay output 2). (required)
         :return: Signal
                  If the method is called asynchronously,
                  returns the request thread.
@@ -686,7 +688,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Signal',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -773,7 +775,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Pose',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -860,7 +862,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Position',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -947,7 +949,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Tool',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1034,7 +1036,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1051,7 +1053,7 @@ class RobotApi(object):
 
         :param async bool
         :param float timeout: Time in milliseconds to wait for gripper opening
-        :return: None
+        :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1073,7 +1075,7 @@ class RobotApi(object):
 
         :param async bool
         :param float timeout: Time in milliseconds to wait for gripper opening
-        :return: None
+        :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1123,9 +1125,9 @@ class RobotApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1134,14 +1136,14 @@ class RobotApi(object):
     def pack(self, **kwargs):  # noqa: E501
         """Asking the arm to reach a compact pose for transportation  # noqa: E501
 
-        The function commands the robot to reach the pose that may be used for transportation  # noqa: E501
+        The function sets the arm into a preset pose for transportation.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.pack(async=True)
         >>> result = thread.get()
 
         :param async bool
-        :return: None
+        :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1155,14 +1157,14 @@ class RobotApi(object):
     def pack_with_http_info(self, **kwargs):  # noqa: E501
         """Asking the arm to reach a compact pose for transportation  # noqa: E501
 
-        The function commands the robot to reach the pose that may be used for transportation  # noqa: E501
+        The function sets the arm into a preset pose for transportation.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.pack_with_http_info(async=True)
         >>> result = thread.get()
 
         :param async bool
-        :return: None
+        :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1210,9 +1212,9 @@ class RobotApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1221,7 +1223,7 @@ class RobotApi(object):
     def recover(self, **kwargs):  # noqa: E501
         """Recover robot after emergency if it is possible.  # noqa: E501
 
-        Recover robot after emergency if it is possible and set motion status to idle.  # noqa: E501
+        The function recovers the arm after an emergency, setting its motion status to IDLE. Recovery is possible only after an emergency that is not fatal—corresponding to the ERROR status.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.recover(async=True)
@@ -1242,7 +1244,7 @@ class RobotApi(object):
     def recover_with_http_info(self, **kwargs):  # noqa: E501
         """Recover robot after emergency if it is possible.  # noqa: E501
 
-        Recover robot after emergency if it is possible and set motion status to idle.  # noqa: E501
+        The function recovers the arm after an emergency, setting its motion status to IDLE. Recovery is possible only after an emergency that is not fatal—corresponding to the ERROR status.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.recover_with_http_info(async=True)
@@ -1299,7 +1301,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='RecoverState',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1315,7 +1317,7 @@ class RobotApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :return: None
+        :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1336,7 +1338,7 @@ class RobotApi(object):
         >>> result = thread.get()
 
         :param async bool
-        :return: None
+        :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1384,9 +1386,9 @@ class RobotApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type=None,  # noqa: E501
+            response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1405,6 +1407,7 @@ class RobotApi(object):
         :param list[Pose] body: Request Body (required)
         :param int speed: Speed of Robot (required)
         :param str type:
+        :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1429,12 +1432,13 @@ class RobotApi(object):
         :param list[Pose] body: Request Body (required)
         :param int speed: Speed of Robot (required)
         :param str type:
+        :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body', 'speed', 'type']  # noqa: E501
+        all_params = ['body', 'speed', 'type', 'tcp_max_velocity']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1462,6 +1466,8 @@ class RobotApi(object):
             raise ValueError("Invalid value for parameter `speed` when calling `run_poses`, must be a value less than or equal to `100`")  # noqa: E501
         if 'speed' in params and params['speed'] < 1:  # noqa: E501
             raise ValueError("Invalid value for parameter `speed` when calling `run_poses`, must be a value greater than or equal to `1`")  # noqa: E501
+        if 'tcp_max_velocity' in params and params['tcp_max_velocity'] > 2:  # noqa: E501
+            raise ValueError("Invalid value for parameter `tcp_max_velocity` when calling `run_poses`, must be a value less than or equal to `2`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -1471,6 +1477,8 @@ class RobotApi(object):
             query_params.append(('speed', params['speed']))  # noqa: E501
         if 'type' in params:
             query_params.append(('type', params['type']))  # noqa: E501
+        if 'tcp_max_velocity' in params:
+            query_params.append(('tcp_max_velocity', params['tcp_max_velocity']))  # noqa: E501
 
         header_params = {}
 
@@ -1501,7 +1509,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1520,6 +1528,7 @@ class RobotApi(object):
         :param list[Position] body: Request Body (required)
         :param int speed: Speed of Robot (required)
         :param str type:
+        :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1544,12 +1553,13 @@ class RobotApi(object):
         :param list[Position] body: Request Body (required)
         :param int speed: Speed of Robot (required)
         :param str type:
+        :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body', 'speed', 'type']  # noqa: E501
+        all_params = ['body', 'speed', 'type', 'tcp_max_velocity']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1577,6 +1587,8 @@ class RobotApi(object):
             raise ValueError("Invalid value for parameter `speed` when calling `run_positions`, must be a value less than or equal to `100`")  # noqa: E501
         if 'speed' in params and params['speed'] < 1:  # noqa: E501
             raise ValueError("Invalid value for parameter `speed` when calling `run_positions`, must be a value greater than or equal to `1`")  # noqa: E501
+        if 'tcp_max_velocity' in params and params['tcp_max_velocity'] > 2:  # noqa: E501
+            raise ValueError("Invalid value for parameter `tcp_max_velocity` when calling `run_positions`, must be a value less than or equal to `2`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -1586,6 +1598,8 @@ class RobotApi(object):
             query_params.append(('speed', params['speed']))  # noqa: E501
         if 'type' in params:
             query_params.append(('type', params['type']))  # noqa: E501
+        if 'tcp_max_velocity' in params:
+            query_params.append(('tcp_max_velocity', params['tcp_max_velocity']))  # noqa: E501
 
         header_params = {}
 
@@ -1616,7 +1630,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1625,14 +1639,14 @@ class RobotApi(object):
     def set_digital_output_high(self, port, **kwargs):  # noqa: E501
         """Set high level of digital output signal  # noqa: E501
 
-        The function sets the digital output specified in the Port parameter to the HIGH signal level. A digital output is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
+        The function sets the digital output specified in the {port} parameter of the request path to the HIGH signal level.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.set_digital_output_high(port, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param int port: The parameter indicates the number of the digital output on the back of the control box that you want to set to the HIGH signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). (required)
+        :param int port: The parameter indicates the number of a digital output is a physical port on the back panel of the control box. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1) or 2 (corresponds to Relay output 2). (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1647,14 +1661,14 @@ class RobotApi(object):
     def set_digital_output_high_with_http_info(self, port, **kwargs):  # noqa: E501
         """Set high level of digital output signal  # noqa: E501
 
-        The function sets the digital output specified in the Port parameter to the HIGH signal level. A digital output is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
+        The function sets the digital output specified in the {port} parameter of the request path to the HIGH signal level.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async=True
         >>> thread = api.set_digital_output_high_with_http_info(port, async=True)
         >>> result = thread.get()
 
         :param async bool
-        :param int port: The parameter indicates the number of the digital output on the back of the control box that you want to set to the HIGH signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). (required)
+        :param int port: The parameter indicates the number of a digital output is a physical port on the back panel of the control box. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1) or 2 (corresponds to Relay output 2). (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1715,7 +1729,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1814,7 +1828,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1833,6 +1847,7 @@ class RobotApi(object):
         :param Pose body: Request Body (required)
         :param int speed: Speed of Robot (required)
         :param str type:
+        :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
@@ -1857,12 +1872,13 @@ class RobotApi(object):
         :param Pose body: Request Body (required)
         :param int speed: Speed of Robot (required)
         :param str type:
+        :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body', 'speed', 'type']  # noqa: E501
+        all_params = ['body', 'speed', 'type', 'tcp_max_velocity']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -1890,6 +1906,8 @@ class RobotApi(object):
             raise ValueError("Invalid value for parameter `speed` when calling `set_pose`, must be a value less than or equal to `100`")  # noqa: E501
         if 'speed' in params and params['speed'] < 1:  # noqa: E501
             raise ValueError("Invalid value for parameter `speed` when calling `set_pose`, must be a value greater than or equal to `1`")  # noqa: E501
+        if 'tcp_max_velocity' in params and params['tcp_max_velocity'] > 2:  # noqa: E501
+            raise ValueError("Invalid value for parameter `tcp_max_velocity` when calling `set_pose`, must be a value less than or equal to `2`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -1899,6 +1917,8 @@ class RobotApi(object):
             query_params.append(('speed', params['speed']))  # noqa: E501
         if 'type' in params:
             query_params.append(('type', params['type']))  # noqa: E501
+        if 'tcp_max_velocity' in params:
+            query_params.append(('tcp_max_velocity', params['tcp_max_velocity']))  # noqa: E501
 
         header_params = {}
 
@@ -1929,7 +1949,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1948,7 +1968,8 @@ class RobotApi(object):
         :param Position body: Request Body (required)
         :param int speed: Speed of Robot (required)
         :param str type:
-        :return: Position
+        :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
+        :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
@@ -1972,12 +1993,13 @@ class RobotApi(object):
         :param Position body: Request Body (required)
         :param int speed: Speed of Robot (required)
         :param str type:
-        :return: Position
+        :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
+        :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
-        all_params = ['body', 'speed', 'type']  # noqa: E501
+        all_params = ['body', 'speed', 'type', 'tcp_max_velocity']  # noqa: E501
         all_params.append('async')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -2005,6 +2027,8 @@ class RobotApi(object):
             raise ValueError("Invalid value for parameter `speed` when calling `set_position`, must be a value less than or equal to `100`")  # noqa: E501
         if 'speed' in params and params['speed'] < 1:  # noqa: E501
             raise ValueError("Invalid value for parameter `speed` when calling `set_position`, must be a value greater than or equal to `1`")  # noqa: E501
+        if 'tcp_max_velocity' in params and params['tcp_max_velocity'] > 2:  # noqa: E501
+            raise ValueError("Invalid value for parameter `tcp_max_velocity` when calling `set_position`, must be a value less than or equal to `2`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -2014,6 +2038,8 @@ class RobotApi(object):
             query_params.append(('speed', params['speed']))  # noqa: E501
         if 'type' in params:
             query_params.append(('type', params['type']))  # noqa: E501
+        if 'tcp_max_velocity' in params:
+            query_params.append(('tcp_max_velocity', params['tcp_max_velocity']))  # noqa: E501
 
         header_params = {}
 
@@ -2042,9 +2068,9 @@ class RobotApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='Position',  # noqa: E501
+            response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -2131,7 +2157,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='MotionStatus',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -2218,7 +2244,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='list[MotorStatus]',  # noqa: E501
             auth_settings=auth_settings,
-            async=params.get('async'),
+            is_async=params.get('async'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),

@@ -21,6 +21,7 @@ from rozum.rest.client.models.error_emergency503 import ErrorEmergency503
 from rozum.rest.client.models.error_port412 import ErrorPort412
 from rozum.rest.client.models.error_pose412 import ErrorPose412
 from rozum.rest.client.models.error_position412 import ErrorPosition412
+from rozum.rest.client.models.error_tcp_velocity412 import ErrorTcpVelocity412
 from rozum.rest.client.models.motion_status import MotionStatus
 from rozum.rest.client.models.motion_type import MotionType
 from rozum.rest.client.models.motor_status import MotorStatus
