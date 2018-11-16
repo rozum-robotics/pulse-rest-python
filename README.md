@@ -5,29 +5,29 @@ Tested on Python 3. Compatibility with Python 2 is not guaranteed but this clien
 [swagger-codegen](https://github.com/swagger-api/swagger-codegen) so it may work for you.
 
 ### Installation
-Currently, installation via pip is not supported. So, copy the `rozum` module into your project root manually.
+Using pip: `pip install pulse-rest --trusted-host pip.rozum.com -i http://pip.rozum.com/simple`
 
 ### Getting started
 ```python
 from pprint import pprint
-import rozum as rr
+from pulserest import *
 # create an instance of the API wrapper class
 host = "127.0.0.1:8080"  # replace with valid robot address 
-robot = rr.RestRobot(host)
+robot = RobotPulse(host)
 # create motion targets
-pose = rr.Pose([0, 0, 0, 0, 0, 0])
-position = rr.Position(rr.Point(-0.33, -0.33, 0.43), rr.Rotation(0, -1.1659, 0))
+zero_pose = pose([0, 0, 0, 0, 0, 0])
+example_position = position((-0.33, -0.33, 0.43), (0, -1.1659, 0))
 SPEED = 100
 try:
     # execute desired actions
     robot.set_pose(pose, SPEED)
     robot.await_motion()
-    robot.set_position(position, SPEED, rr.MotionType.LINEAR)
+    robot.set_position(position, SPEED, MT_LINEAR)
     robot.await_motion()
     # get some information
     status_motors = robot.status_motors()
     pprint(status_motors)
-except rr.RestApiException as e:
+except RestApiException as e:
     print("Exception when calling RestRobot %s\n" % e)
 ```
 

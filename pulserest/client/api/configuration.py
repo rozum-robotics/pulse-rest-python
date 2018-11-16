@@ -17,9 +17,9 @@ import copy
 import logging
 import multiprocessing
 import sys
-import urllib3
 
 import six
+import urllib3
 from six.moves import http_client as httplib
 
 
@@ -63,7 +63,7 @@ class Configuration(six.with_metaclass(TypeWithDefault, object)):
 
         # Logging Settings
         self.logger = {}
-        self.logger["package_logger"] = logging.getLogger("rozum.rest.client")
+        self.logger["package_logger"] = logging.getLogger("pulserest")
         self.logger["urllib3_logger"] = logging.getLogger("urllib3")
         # Log format
         self.logger_format = '%(asctime)s %(levelname)s %(message)s'

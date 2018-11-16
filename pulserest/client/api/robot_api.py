@@ -13,12 +13,10 @@
 
 from __future__ import absolute_import
 
-import re  # noqa: F401
-
 # python 2 and python 3 compatibility library
 import six
 
-from rozum.rest.client.api.api_client import ApiClient
+from pulserest.client.api.api_client import ApiClient
 
 
 class RobotApi(object):

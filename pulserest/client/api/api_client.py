@@ -14,18 +14,18 @@ from __future__ import absolute_import
 import datetime
 import json
 import mimetypes
-from multiprocessing.pool import ThreadPool
 import os
 import re
 import tempfile
+from multiprocessing.pool import ThreadPool
 
 # python 2 and python 3 compatibility library
 import six
 from six.moves.urllib.parse import quote
 
-from rozum.rest.client.api.configuration import Configuration
-import rozum.rest.client.models
-from rozum.rest.client.api import rest
+import pulserest.client.models
+from pulserest.client.api import rest
+from pulserest.client.api.configuration import Configuration
 
 
 class ApiClient(object):
@@ -258,7 +258,7 @@ class ApiClient(object):
             if klass in self.NATIVE_TYPES_MAPPING:
                 klass = self.NATIVE_TYPES_MAPPING[klass]
             else:
-                klass = getattr(rozum.rest.client.models, klass)
+                klass = getattr(pulserest.client.models, klass)
 
         if klass in self.PRIMITIVE_TYPES:
             return self.__deserialize_primitive(data, klass)
@@ -564,7 +564,7 @@ class ApiClient(object):
         except ImportError:
             return string
         except ValueError:
-            raise rest.ApiException(
+            raise pulserest.ApiException(
                 status=0,
                 reason="Failed to parse `{0}` as date object".format(string)
             )
@@ -583,7 +583,7 @@ class ApiClient(object):
         except ImportError:
             return string
         except ValueError:
-            raise rest.ApiException(
+            raise pulserest.ApiException(
                 status=0,
                 reason=(
                     "Failed to parse `{0}` as datetime object"
