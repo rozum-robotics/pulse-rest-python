@@ -16,10 +16,9 @@
 from __future__ import absolute_import
 
 # import apis into sdk package
-from rozum.rest.client.api import RobotApi
-
+from pulserest.client.api import RobotApi
+from pulserest.client.api.configuration import Configuration
 # import ApiClient
-from rozum.rest.client.api.rest import ApiException as RestApiException
-from rozum.rest.client.api.configuration import Configuration
+from pulserest.client.api.rest import ApiException as RestApiException
 # import models into sdk package
-from rozum.rest.client.models import *
+from pulserest.client.models import *
