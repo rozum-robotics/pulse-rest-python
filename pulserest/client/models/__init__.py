@@ -15,16 +15,19 @@
 from __future__ import absolute_import
 
 # import models into model package
+from pulserest.client.models.box_obstacle import BoxObstacle
+from pulserest.client.models.capsule_obstacle import CapsuleObstacle
 from pulserest.client.models.error400 import Error400
 from pulserest.client.models.error500 import Error500
 from pulserest.client.models.error_emergency503 import ErrorEmergency503
 from pulserest.client.models.error_port412 import ErrorPort412
 from pulserest.client.models.error_pose412 import ErrorPose412
 from pulserest.client.models.error_position412 import ErrorPosition412
-from pulserest.client.models.error_tcp_velocity412 import ErrorTcpVelocity412
 from pulserest.client.models.motion_status import MotionStatus
 from pulserest.client.models.motion_type import MotionType
 from pulserest.client.models.motor_status import MotorStatus
+from pulserest.client.models.obstacle import Obstacle
+from pulserest.client.models.plane_obstacle import PlaneObstacle
 from pulserest.client.models.point import Point
 from pulserest.client.models.pose import Pose
 from pulserest.client.models.position import Position

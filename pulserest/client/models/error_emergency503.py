@@ -60,6 +60,9 @@ class ErrorEmergency503(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(ErrorEmergency503, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

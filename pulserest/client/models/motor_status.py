@@ -482,6 +482,9 @@ class MotorStatus(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(MotorStatus, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

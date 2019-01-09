@@ -70,6 +70,9 @@ class MotionStatus(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(MotionStatus, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 
