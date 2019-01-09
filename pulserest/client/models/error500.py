@@ -60,6 +60,9 @@ class Error500(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(Error500, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 

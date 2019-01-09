@@ -31,23 +31,118 @@ class RobotApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
+    def add_to_environment(self, body, **kwargs):  # noqa: E501
+        """Add obstacle to robot environment.  # noqa: E501
+
+        Add environment to robot environment. Obstacle it is an object that is taken into account in the calculation of collisions.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.add_to_environment(body, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param Obstacle body: Request Body (required)
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.add_to_environment_with_http_info(body, **kwargs)  # noqa: E501
+        else:
+            (data) = self.add_to_environment_with_http_info(body, **kwargs)  # noqa: E501
+            return data
+
+    def add_to_environment_with_http_info(self, body, **kwargs):  # noqa: E501
+        """Add obstacle to robot environment.  # noqa: E501
+
+        Add environment to robot environment. Obstacle it is an object that is taken into account in the calculation of collisions.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.add_to_environment_with_http_info(body, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param Obstacle body: Request Body (required)
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['body']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method add_to_environment" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'body' is set
+        if ('body' not in params or
+                params['body'] is None):
+            raise ValueError("Missing the required parameter `body` when calling `add_to_environment`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        if 'body' in params:
+            body_params = params['body']
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/environment', 'PUT',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='str',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
     def change_base(self, body, **kwargs):  # noqa: E501
         """Setting a new zero point position  # noqa: E501
 
         The function enables setting a new zero point position of the robotic arm as required for the current user environment (e.g., considering the surrounding equipment). The new zero point position is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the desired offset (in meters) from the physical centerpoint of the arm base (original zero point) along the x, y, and z axes accordingly. _Roll_ stands for the rotation angle around the x axis; _pitch_ - the rotation angle around the y axis; _yaw_ - the rotation angle around the z axis. All rotation angles are in radians and relative to the physical centerpoint of the arm base.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.change_base(body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.change_base(body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param Position body: Request Body (required)
         :return: Position
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.change_base_with_http_info(body, **kwargs)  # noqa: E501
         else:
             (data) = self.change_base_with_http_info(body, **kwargs)  # noqa: E501
@@ -58,11 +153,11 @@ class RobotApi(object):
 
         The function enables setting a new zero point position of the robotic arm as required for the current user environment (e.g., considering the surrounding equipment). The new zero point position is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the desired offset (in meters) from the physical centerpoint of the arm base (original zero point) along the x, y, and z axes accordingly. _Roll_ stands for the rotation angle around the x axis; _pitch_ - the rotation angle around the y axis; _yaw_ - the rotation angle around the z axis. All rotation angles are in radians and relative to the physical centerpoint of the arm base.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.change_base_with_http_info(body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.change_base_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param Position body: Request Body (required)
         :return: Position
                  If the method is called asynchronously,
@@ -70,7 +165,7 @@ class RobotApi(object):
         """
 
         all_params = ['body']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -124,7 +219,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Position',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -133,20 +228,20 @@ class RobotApi(object):
     def change_tool(self, body, **kwargs):  # noqa: E501
         """Setting tool properties  # noqa: E501
 
-        The function enables setting new TCP to account for the properties of an attached or changed work tool. The tool properties define the following: - _name_ - any random name of the work tool defined by the user (e.g., \"gripper\") - _position_ - a set of x, y, and z coordinates and rotation angles - _roll_, _pitch_, and _yaw_. The coordinates define the actual distance (in meters) from the arm's zero point to the new TCP along the x, y, and z axes accordingly. _Roll_ stands for the rotation angle of the new TCP around the x axis; _pitch_ - the rotation angle around the y axis; _yaw_ - the rotation angle of the new TCP around the z axis. All rotation angles are in radians. - _radius_ - radius of the work tool (in meters) measured from its physical center point.  # noqa: E501
+        The function enables setting new TCP to account for the properties of an attached or changed work tool. The tool properties define the following:  - _name_ - any random name of the work tool defined by the user (e.g., \\\"gripper\\\")  - _position_ - a set of x, y, and z coordinates and rotation angles - _roll_, _pitch_, and _yaw_. The coordinates define the actual distance (in meters) from the arm's zero point to the new TCP along the x, y, and z axes accordingly. _Roll_ stands for the rotation angle of the new TCP around the x axis; _pitch_ - the rotation angle around the y axis; _yaw_ - the rotation angle of the new TCP around the z axis. All rotation angles are in radians.  - _radius_ - radius of the work tool (in meters) measured from its physical center point.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.change_tool(body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.change_tool(body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param Tool body: Request Body (required)
         :return: Tool
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.change_tool_with_http_info(body, **kwargs)  # noqa: E501
         else:
             (data) = self.change_tool_with_http_info(body, **kwargs)  # noqa: E501
@@ -155,13 +250,13 @@ class RobotApi(object):
     def change_tool_with_http_info(self, body, **kwargs):  # noqa: E501
         """Setting tool properties  # noqa: E501
 
-        The function enables setting new TCP to account for the properties of an attached or changed work tool. The tool properties define the following: - _name_ - any random name of the work tool defined by the user (e.g., \"gripper\") - _position_ - a set of x, y, and z coordinates and rotation angles - _roll_, _pitch_, and _yaw_. The coordinates define the actual distance (in meters) from the arm's zero point to the new TCP along the x, y, and z axes accordingly. _Roll_ stands for the rotation angle of the new TCP around the x axis; _pitch_ - the rotation angle around the y axis; _yaw_ - the rotation angle of the new TCP around the z axis. All rotation angles are in radians. - _radius_ - radius of the work tool (in meters) measured from its physical center point.  # noqa: E501
+        The function enables setting new TCP to account for the properties of an attached or changed work tool. The tool properties define the following:  - _name_ - any random name of the work tool defined by the user (e.g., \\\"gripper\\\")  - _position_ - a set of x, y, and z coordinates and rotation angles - _roll_, _pitch_, and _yaw_. The coordinates define the actual distance (in meters) from the arm's zero point to the new TCP along the x, y, and z axes accordingly. _Roll_ stands for the rotation angle of the new TCP around the x axis; _pitch_ - the rotation angle around the y axis; _yaw_ - the rotation angle of the new TCP around the z axis. All rotation angles are in radians.  - _radius_ - radius of the work tool (in meters) measured from its physical center point.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.change_tool_with_http_info(body, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.change_tool_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param Tool body: Request Body (required)
         :return: Tool
                  If the method is called asynchronously,
@@ -169,7 +264,7 @@ class RobotApi(object):
         """
 
         all_params = ['body']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -223,7 +318,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Tool',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -232,20 +327,20 @@ class RobotApi(object):
     def close_gripper(self, **kwargs):  # noqa: E501
         """Asking the arm to close the gripper  # noqa: E501
 
-        The function commands the robot to close the gripper. It has no request body, but the user can optionally set how long (in milliseconds) the arm should remain idle, waiting for the gripper to close. The default manufacturer-preset value is 500 ms. ### Note: Setting the parameter, it is recommended to use values above 0 ms.  # noqa: E501
+        The function commands the robot to close the gripper. It has no request body, but the user can optionally set how long (in milliseconds) the arm should remain idle, waiting for the gripper to close. The default manufacturer-preset value is 500 ms.  ### Note:  Setting the parameter, it is recommended to use values above 0 ms.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.close_gripper(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.close_gripper(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param float timeout: Time in milliseconds to wait for gripper closing
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.close_gripper_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.close_gripper_with_http_info(**kwargs)  # noqa: E501
@@ -254,13 +349,13 @@ class RobotApi(object):
     def close_gripper_with_http_info(self, **kwargs):  # noqa: E501
         """Asking the arm to close the gripper  # noqa: E501
 
-        The function commands the robot to close the gripper. It has no request body, but the user can optionally set how long (in milliseconds) the arm should remain idle, waiting for the gripper to close. The default manufacturer-preset value is 500 ms. ### Note: Setting the parameter, it is recommended to use values above 0 ms.  # noqa: E501
+        The function commands the robot to close the gripper. It has no request body, but the user can optionally set how long (in milliseconds) the arm should remain idle, waiting for the gripper to close. The default manufacturer-preset value is 500 ms.  ### Note:  Setting the parameter, it is recommended to use values above 0 ms.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.close_gripper_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.close_gripper_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param float timeout: Time in milliseconds to wait for gripper closing
         :return: str
                  If the method is called asynchronously,
@@ -268,7 +363,7 @@ class RobotApi(object):
         """
 
         all_params = ['timeout']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -314,7 +409,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -323,19 +418,19 @@ class RobotApi(object):
     def freeze(self, **kwargs):  # noqa: E501
         """Asking the arm to go to the freeze state  # noqa: E501
 
-        The function sets the arm in the \"freeze\" state. The arm stops moving, retaining its last position. ### Note: In the state, it is not advisable to move the arm by hand as this can cause damage to its components.  # noqa: E501
+        The function sets the arm in the \\\"freeze\\\" state. The arm stops moving, retaining its last position.  ### Note:  In the state, it is not advisable to move the arm by hand as this can cause damage to its components.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.freeze(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.freeze(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.freeze_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.freeze_with_http_info(**kwargs)  # noqa: E501
@@ -344,20 +439,20 @@ class RobotApi(object):
     def freeze_with_http_info(self, **kwargs):  # noqa: E501
         """Asking the arm to go to the freeze state  # noqa: E501
 
-        The function sets the arm in the \"freeze\" state. The arm stops moving, retaining its last position. ### Note: In the state, it is not advisable to move the arm by hand as this can cause damage to its components.  # noqa: E501
+        The function sets the arm in the \\\"freeze\\\" state. The arm stops moving, retaining its last position.  ### Note:  In the state, it is not advisable to move the arm by hand as this can cause damage to its components.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.freeze_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.freeze_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -401,7 +496,94 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def get_all_from_environment(self, **kwargs):  # noqa: E501
+        """Getting robot environment.  # noqa: E501
+
+        Return all obstacles from environment. Obstacle it is an object that is taken into account in the calculation of collisions.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_all_from_environment(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :return: list[Obstacle]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_all_from_environment_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.get_all_from_environment_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def get_all_from_environment_with_http_info(self, **kwargs):  # noqa: E501
+        """Getting robot environment.  # noqa: E501
+
+        Return all obstacles from environment. Obstacle it is an object that is taken into account in the calculation of collisions.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_all_from_environment_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :return: list[Obstacle]
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_all_from_environment" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'text/plain'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/environment', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='list[Obstacle]',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -412,17 +594,17 @@ class RobotApi(object):
 
         The function returns the actual position of the arm's zero point in the user environment. The actual zero point position is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the offset (in meters) from the physical centerpoint of the arm base (original zero point) to the actual zero point position along the x, y, and z axes accordingly. _Roll_ stands for the rotation angle around the x axis; _pitch_ - the rotation angle around the y axis; _yaw_ - the rotation angle around the z axis. All rotation angles are in radians and relative to the physical centerpoint of the arm base.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_base(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_base(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: Position
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.get_base_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_base_with_http_info(**kwargs)  # noqa: E501
@@ -433,18 +615,18 @@ class RobotApi(object):
 
         The function returns the actual position of the arm's zero point in the user environment. The actual zero point position is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the offset (in meters) from the physical centerpoint of the arm base (original zero point) to the actual zero point position along the x, y, and z axes accordingly. _Roll_ stands for the rotation angle around the x axis; _pitch_ - the rotation angle around the y axis; _yaw_ - the rotation angle around the z axis. All rotation angles are in radians and relative to the physical centerpoint of the arm base.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_base_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_base_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: Position
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -488,7 +670,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Position',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -499,18 +681,18 @@ class RobotApi(object):
 
         The function returns the actual signal level on the digital input specified in the {port} parameter of the request path.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_digital_input(port, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_digital_input(port, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param int port: The parameter indicates the number of a digital input is a physical port on the back panel of the control box. Since the control box has four digital inputs (DI), the parameter can have any integral value between 1 (corresponds to DI1) and 4 (corresponds to DI4). (required)
         :return: Signal
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.get_digital_input_with_http_info(port, **kwargs)  # noqa: E501
         else:
             (data) = self.get_digital_input_with_http_info(port, **kwargs)  # noqa: E501
@@ -521,11 +703,11 @@ class RobotApi(object):
 
         The function returns the actual signal level on the digital input specified in the {port} parameter of the request path.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_digital_input_with_http_info(port, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_digital_input_with_http_info(port, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param int port: The parameter indicates the number of a digital input is a physical port on the back panel of the control box. Since the control box has four digital inputs (DI), the parameter can have any integral value between 1 (corresponds to DI1) and 4 (corresponds to DI4). (required)
         :return: Signal
                  If the method is called asynchronously,
@@ -533,7 +715,7 @@ class RobotApi(object):
         """
 
         all_params = ['port']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -587,7 +769,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Signal',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -598,18 +780,18 @@ class RobotApi(object):
 
         The function returns the actual signal level on the digital output specified in the {port} parameter of the request path.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_digital_output(port, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_digital_output(port, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param int port: The parameter indicates the number of a digital output is a physical port on the back panel of the control box. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1) or 2 (corresponds to Relay output 2). (required)
         :return: Signal
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.get_digital_output_with_http_info(port, **kwargs)  # noqa: E501
         else:
             (data) = self.get_digital_output_with_http_info(port, **kwargs)  # noqa: E501
@@ -620,11 +802,11 @@ class RobotApi(object):
 
         The function returns the actual signal level on the digital output specified in the {port} parameter of the request path.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_digital_output_with_http_info(port, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_digital_output_with_http_info(port, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param int port: The parameter indicates the number of a digital output is a physical port on the back panel of the control box. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1) or 2 (corresponds to Relay output 2). (required)
         :return: Signal
                  If the method is called asynchronously,
@@ -632,7 +814,7 @@ class RobotApi(object):
         """
 
         all_params = ['port']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -686,7 +868,102 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Signal',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def get_from_environment_by_name(self, obstacle, **kwargs):  # noqa: E501
+        """Getting obstacle from robot environment by name.  # noqa: E501
+
+        Return obstacle from environment by name. Obstacle it is an object that is taken into account in the calculation of collisions.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_from_environment_by_name(obstacle, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str obstacle: The parameter is the name of element from environment that you want to get. (required)
+        :return: Obstacle
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.get_from_environment_by_name_with_http_info(obstacle, **kwargs)  # noqa: E501
+        else:
+            (data) = self.get_from_environment_by_name_with_http_info(obstacle, **kwargs)  # noqa: E501
+            return data
+
+    def get_from_environment_by_name_with_http_info(self, obstacle, **kwargs):  # noqa: E501
+        """Getting obstacle from robot environment by name.  # noqa: E501
+
+        Return obstacle from environment by name. Obstacle it is an object that is taken into account in the calculation of collisions.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_from_environment_by_name_with_http_info(obstacle, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str obstacle: The parameter is the name of element from environment that you want to get. (required)
+        :return: Obstacle
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['obstacle']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method get_from_environment_by_name" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'obstacle' is set
+        if ('obstacle' not in params or
+                params['obstacle'] is None):
+            raise ValueError("Missing the required parameter `obstacle` when calling `get_from_environment_by_name`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'obstacle' in params:
+            path_params['obstacle'] = params['obstacle']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['application/json', 'text/plain'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/environment/{obstacle}', 'GET',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='Obstacle',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -697,17 +974,17 @@ class RobotApi(object):
 
         The function returns the actual pose of the robotic arm. The pose is described as a set of output flange angles (in degrees) of all the six servos in the arm joints.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_pose(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_pose(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: Pose
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.get_pose_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_pose_with_http_info(**kwargs)  # noqa: E501
@@ -718,18 +995,18 @@ class RobotApi(object):
 
         The function returns the actual pose of the robotic arm. The pose is described as a set of output flange angles (in degrees) of all the six servos in the arm joints.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_pose_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_pose_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: Pose
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -773,7 +1050,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Pose',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -784,17 +1061,17 @@ class RobotApi(object):
 
         The function returns the actual position of the PULSE robotic arm, which is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the actual distance (in meters) from the zero point of the robotic arm to the tool center point (TCP) along the x, y, and z axes accordingly. _Roll_ stands for the TCP rotation angle around the x axis; _pitch_ - the TCP rotation angle around the y axis; _yaw_ - the TCP rotation angle around the z axis. All rotation angles are in radians and relative to the zero point.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_position(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_position(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: Position
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.get_position_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_position_with_http_info(**kwargs)  # noqa: E501
@@ -805,18 +1082,18 @@ class RobotApi(object):
 
         The function returns the actual position of the PULSE robotic arm, which is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the actual distance (in meters) from the zero point of the robotic arm to the tool center point (TCP) along the x, y, and z axes accordingly. _Roll_ stands for the TCP rotation angle around the x axis; _pitch_ - the TCP rotation angle around the y axis; _yaw_ - the TCP rotation angle around the z axis. All rotation angles are in radians and relative to the zero point.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_position_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_position_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: Position
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -860,7 +1137,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Position',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -869,19 +1146,19 @@ class RobotApi(object):
     def get_tool(self, **kwargs):  # noqa: E501
         """Getting actual tool properties  # noqa: E501
 
-        The function returns the actual TCP position that accounts for the offset from the original TCP due to attaching/changing the work tool. The actual TCP position is described as a set of the following properties: - _name_ - any random name of the work tool defined by the user (e.g., \"gripper\") - _position_ - x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the distance (in meters) from the arm's zero point to the actual TCP along the x, y, and z axes accordingly. _Roll_ stands for the actual TCP rotation angle around the x axis; _pitch_ - the actual TCP rotation angle around the y axis; _yaw_ - the actual TCP rotation angle around the z axis. All rotation angles are in radians. - _radius_ - radius of the work tool (in meters) measured from its center point.  # noqa: E501
+        The function returns the actual TCP position that accounts for the offset from the original TCP due to attaching/changing the work tool. The actual TCP position is described as a set of the following properties:  - _name_ - any random name of the work tool defined by the user (e.g., \\\"gripper\\\")  - _position_ - x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles.   The coordinates define the distance (in meters) from the arm's zero point   to the actual TCP along the x, y, and z axes accordingly.   _Roll_ stands for the actual TCP rotation angle around the x axis;   _pitch_ - the actual TCP rotation angle around the y axis;   _yaw_ - the actual TCP rotation angle around the z axis. All rotation angles are in radians.    - _radius_ - radius of the work tool (in meters) measured from its center point.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_tool(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_tool(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: Tool
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.get_tool_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.get_tool_with_http_info(**kwargs)  # noqa: E501
@@ -890,20 +1167,20 @@ class RobotApi(object):
     def get_tool_with_http_info(self, **kwargs):  # noqa: E501
         """Getting actual tool properties  # noqa: E501
 
-        The function returns the actual TCP position that accounts for the offset from the original TCP due to attaching/changing the work tool. The actual TCP position is described as a set of the following properties: - _name_ - any random name of the work tool defined by the user (e.g., \"gripper\") - _position_ - x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the distance (in meters) from the arm's zero point to the actual TCP along the x, y, and z axes accordingly. _Roll_ stands for the actual TCP rotation angle around the x axis; _pitch_ - the actual TCP rotation angle around the y axis; _yaw_ - the actual TCP rotation angle around the z axis. All rotation angles are in radians. - _radius_ - radius of the work tool (in meters) measured from its center point.  # noqa: E501
+        The function returns the actual TCP position that accounts for the offset from the original TCP due to attaching/changing the work tool. The actual TCP position is described as a set of the following properties:  - _name_ - any random name of the work tool defined by the user (e.g., \\\"gripper\\\")  - _position_ - x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles.   The coordinates define the distance (in meters) from the arm's zero point   to the actual TCP along the x, y, and z axes accordingly.   _Roll_ stands for the actual TCP rotation angle around the x axis;   _pitch_ - the actual TCP rotation angle around the y axis;   _yaw_ - the actual TCP rotation angle around the z axis. All rotation angles are in radians.    - _radius_ - radius of the work tool (in meters) measured from its center point.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.get_tool_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.get_tool_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: Tool
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -947,7 +1224,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='Tool',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -958,17 +1235,17 @@ class RobotApi(object):
 
         The function returns the unique identifier (ID) of the robotic arm. The ID is an alphanumeric designation that consists of individual servo motor identifications.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.identifier(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.identifier(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.identifier_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.identifier_with_http_info(**kwargs)  # noqa: E501
@@ -979,18 +1256,18 @@ class RobotApi(object):
 
         The function returns the unique identifier (ID) of the robotic arm. The ID is an alphanumeric designation that consists of individual servo motor identifications.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.identifier_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.identifier_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1034,7 +1311,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1043,20 +1320,20 @@ class RobotApi(object):
     def open_gripper(self, **kwargs):  # noqa: E501
         """Asking the arm to open the gripper  # noqa: E501
 
-        The function commands the robot to open the gripper. It has no request body, but the user can optionally set how long (in milliseconds) the arm should remain idle, waiting for the gripper to open. The default manufacturer-preset value is 500 ms. ### Note: Setting the parameter, it is recommended to use values above 0 ms.  # noqa: E501
+        The function commands the robot to open the gripper. It has no request body, but the user can optionally set how long (in milliseconds) the arm should remain idle, waiting for the gripper to open. The default manufacturer-preset value is 500 ms.  ### Note:  Setting the parameter, it is recommended to use values above 0 ms.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.open_gripper(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.open_gripper(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param float timeout: Time in milliseconds to wait for gripper opening
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.open_gripper_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.open_gripper_with_http_info(**kwargs)  # noqa: E501
@@ -1065,13 +1342,13 @@ class RobotApi(object):
     def open_gripper_with_http_info(self, **kwargs):  # noqa: E501
         """Asking the arm to open the gripper  # noqa: E501
 
-        The function commands the robot to open the gripper. It has no request body, but the user can optionally set how long (in milliseconds) the arm should remain idle, waiting for the gripper to open. The default manufacturer-preset value is 500 ms. ### Note: Setting the parameter, it is recommended to use values above 0 ms.  # noqa: E501
+        The function commands the robot to open the gripper. It has no request body, but the user can optionally set how long (in milliseconds) the arm should remain idle, waiting for the gripper to open. The default manufacturer-preset value is 500 ms.  ### Note:  Setting the parameter, it is recommended to use values above 0 ms.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.open_gripper_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.open_gripper_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param float timeout: Time in milliseconds to wait for gripper opening
         :return: str
                  If the method is called asynchronously,
@@ -1079,7 +1356,7 @@ class RobotApi(object):
         """
 
         all_params = ['timeout']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1125,94 +1402,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
-            _return_http_data_only=params.get('_return_http_data_only'),
-            _preload_content=params.get('_preload_content', True),
-            _request_timeout=params.get('_request_timeout'),
-            collection_formats=collection_formats)
-
-    def pack(self, **kwargs):  # noqa: E501
-        """Asking the arm to reach a compact pose for transportation  # noqa: E501
-
-        The function sets the arm into a preset pose for transportation.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.pack(async=True)
-        >>> result = thread.get()
-
-        :param async bool
-        :return: str
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-        kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
-            return self.pack_with_http_info(**kwargs)  # noqa: E501
-        else:
-            (data) = self.pack_with_http_info(**kwargs)  # noqa: E501
-            return data
-
-    def pack_with_http_info(self, **kwargs):  # noqa: E501
-        """Asking the arm to reach a compact pose for transportation  # noqa: E501
-
-        The function sets the arm into a preset pose for transportation.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.pack_with_http_info(async=True)
-        >>> result = thread.get()
-
-        :param async bool
-        :return: str
-                 If the method is called asynchronously,
-                 returns the request thread.
-        """
-
-        all_params = []  # noqa: E501
-        all_params.append('async')
-        all_params.append('_return_http_data_only')
-        all_params.append('_preload_content')
-        all_params.append('_request_timeout')
-
-        params = locals()
-        for key, val in six.iteritems(params['kwargs']):
-            if key not in all_params:
-                raise TypeError(
-                    "Got an unexpected keyword argument '%s'"
-                    " to method pack" % key
-                )
-            params[key] = val
-        del params['kwargs']
-
-        collection_formats = {}
-
-        path_params = {}
-
-        query_params = []
-
-        header_params = {}
-
-        form_params = []
-        local_var_files = {}
-
-        body_params = None
-        # HTTP header `Accept`
-        header_params['Accept'] = self.api_client.select_header_accept(
-            ['text/plain'])  # noqa: E501
-
-        # Authentication setting
-        auth_settings = []  # noqa: E501
-
-        return self.api_client.call_api(
-            '/pack', 'PUT',
-            path_params,
-            query_params,
-            header_params,
-            body=body_params,
-            post_params=form_params,
-            files=local_var_files,
-            response_type='str',  # noqa: E501
-            auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1223,17 +1413,17 @@ class RobotApi(object):
 
         The function recovers the arm after an emergency, setting its motion status to IDLE. Recovery is possible only after an emergency that is not fatal—corresponding to the ERROR status.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.recover(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.recover(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: RecoverState
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.recover_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.recover_with_http_info(**kwargs)  # noqa: E501
@@ -1244,18 +1434,18 @@ class RobotApi(object):
 
         The function recovers the arm after an emergency, setting its motion status to IDLE. Recovery is possible only after an emergency that is not fatal—corresponding to the ERROR status.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.recover_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.recover_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: RecoverState
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1299,7 +1489,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='RecoverState',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1310,17 +1500,17 @@ class RobotApi(object):
 
         The function sets the arm in the \"relaxed\" state. The arm stops moving without retaining its last position. In this state, the user can move the robotic arm by hand (e.g., to verify/test a motion trajectory).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.relax(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.relax(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.relax_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.relax_with_http_info(**kwargs)  # noqa: E501
@@ -1331,18 +1521,18 @@ class RobotApi(object):
 
         The function sets the arm in the \"relaxed\" state. The arm stops moving without retaining its last position. In this state, the user can move the robotic arm by hand (e.g., to verify/test a motion trajectory).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.relax_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.relax_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1386,7 +1576,189 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def remove_all_from_environment(self, **kwargs):  # noqa: E501
+        """Remove all obstacles from robot environment.  # noqa: E501
+
+        Remove all obstacles from robot environment. Obstacle it is an object that is taken into account in the calculation of collisions.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.remove_all_from_environment(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.remove_all_from_environment_with_http_info(**kwargs)  # noqa: E501
+        else:
+            (data) = self.remove_all_from_environment_with_http_info(**kwargs)  # noqa: E501
+            return data
+
+    def remove_all_from_environment_with_http_info(self, **kwargs):  # noqa: E501
+        """Remove all obstacles from robot environment.  # noqa: E501
+
+        Remove all obstacles from robot environment. Obstacle it is an object that is taken into account in the calculation of collisions.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.remove_all_from_environment_with_http_info(async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = []  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method remove_all_from_environment" % key
+                )
+            params[key] = val
+        del params['kwargs']
+
+        collection_formats = {}
+
+        path_params = {}
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/environment', 'DELETE',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='str',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
+            _return_http_data_only=params.get('_return_http_data_only'),
+            _preload_content=params.get('_preload_content', True),
+            _request_timeout=params.get('_request_timeout'),
+            collection_formats=collection_formats)
+
+    def remove_from_environment_by_name(self, obstacle, **kwargs):  # noqa: E501
+        """Remove obstacle from robot environment by name.  # noqa: E501
+
+        Remove obstacle from robot environment by name. Obstacle it is an object that is taken into account in the calculation of collisions.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.remove_from_environment_by_name(obstacle, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str obstacle: The parameter is the name of element from environment that you want to remove. (required)
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+        kwargs['_return_http_data_only'] = True
+        if kwargs.get('async_req'):
+            return self.remove_from_environment_by_name_with_http_info(obstacle, **kwargs)  # noqa: E501
+        else:
+            (data) = self.remove_from_environment_by_name_with_http_info(obstacle, **kwargs)  # noqa: E501
+            return data
+
+    def remove_from_environment_by_name_with_http_info(self, obstacle, **kwargs):  # noqa: E501
+        """Remove obstacle from robot environment by name.  # noqa: E501
+
+        Remove obstacle from robot environment by name. Obstacle it is an object that is taken into account in the calculation of collisions.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.remove_from_environment_by_name_with_http_info(obstacle, async_req=True)
+        >>> result = thread.get()
+
+        :param async_req bool
+        :param str obstacle: The parameter is the name of element from environment that you want to remove. (required)
+        :return: str
+                 If the method is called asynchronously,
+                 returns the request thread.
+        """
+
+        all_params = ['obstacle']  # noqa: E501
+        all_params.append('async_req')
+        all_params.append('_return_http_data_only')
+        all_params.append('_preload_content')
+        all_params.append('_request_timeout')
+
+        params = locals()
+        for key, val in six.iteritems(params['kwargs']):
+            if key not in all_params:
+                raise TypeError(
+                    "Got an unexpected keyword argument '%s'"
+                    " to method remove_from_environment_by_name" % key
+                )
+            params[key] = val
+        del params['kwargs']
+        # verify the required parameter 'obstacle' is set
+        if ('obstacle' not in params or
+                params['obstacle'] is None):
+            raise ValueError("Missing the required parameter `obstacle` when calling `remove_from_environment_by_name`")  # noqa: E501
+
+        collection_formats = {}
+
+        path_params = {}
+        if 'obstacle' in params:
+            path_params['obstacle'] = params['obstacle']  # noqa: E501
+
+        query_params = []
+
+        header_params = {}
+
+        form_params = []
+        local_var_files = {}
+
+        body_params = None
+        # HTTP header `Accept`
+        header_params['Accept'] = self.api_client.select_header_accept(
+            ['text/plain'])  # noqa: E501
+
+        # Authentication setting
+        auth_settings = []  # noqa: E501
+
+        return self.api_client.call_api(
+            '/environment/{obstacle}', 'DELETE',
+            path_params,
+            query_params,
+            header_params,
+            body=body_params,
+            post_params=form_params,
+            files=local_var_files,
+            response_type='str',  # noqa: E501
+            auth_settings=auth_settings,
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1395,23 +1767,23 @@ class RobotApi(object):
     def run_poses(self, body, speed, **kwargs):  # noqa: E501
         """Asking the arm to move to a pose  # noqa: E501
 
-        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one pose to another. In the trajectory, each waypoint is a set of output flange angles (in degrees) of the six servos in the arm joints. Two motion types supported: linear and joint. Default: joint ### Note: Similarly, you can move the arm from one pose to another through one or more waypoints using the PUT/pose function. When the arm is executing a trajectory of PUT/pose waypoints, it stops for a short moment at each preset waypoint. With the PUT/poses/run function, however, the arm moves smoothly though all waypoints without stopping, which reduces the overall time of going from one pose to another.  # noqa: E501
+        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one pose to another. In the trajectory, each waypoint is a set of output flange angles (in degrees) of the six servos in the arm joints.  Two motion types supported: linear and joint. Default: joint  ### Note:  Similarly, you can move the arm from one pose to another through one or more waypoints using the PUT/pose function. When the arm is executing a trajectory of PUT/pose waypoints, it stops for a short moment at each preset waypoint. With the PUT/poses/run function, however, the arm moves smoothly though all waypoints without stopping, which reduces the overall time of going from one pose to another.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.run_poses(body, speed, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.run_poses(body, speed, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param list[Pose] body: Request Body (required)
         :param int speed: Speed of Robot (required)
-        :param str type:
+        :param ERRORUNKNOWN type:
         :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.run_poses_with_http_info(body, speed, **kwargs)  # noqa: E501
         else:
             (data) = self.run_poses_with_http_info(body, speed, **kwargs)  # noqa: E501
@@ -1420,16 +1792,16 @@ class RobotApi(object):
     def run_poses_with_http_info(self, body, speed, **kwargs):  # noqa: E501
         """Asking the arm to move to a pose  # noqa: E501
 
-        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one pose to another. In the trajectory, each waypoint is a set of output flange angles (in degrees) of the six servos in the arm joints. Two motion types supported: linear and joint. Default: joint ### Note: Similarly, you can move the arm from one pose to another through one or more waypoints using the PUT/pose function. When the arm is executing a trajectory of PUT/pose waypoints, it stops for a short moment at each preset waypoint. With the PUT/poses/run function, however, the arm moves smoothly though all waypoints without stopping, which reduces the overall time of going from one pose to another.  # noqa: E501
+        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one pose to another. In the trajectory, each waypoint is a set of output flange angles (in degrees) of the six servos in the arm joints.  Two motion types supported: linear and joint. Default: joint  ### Note:  Similarly, you can move the arm from one pose to another through one or more waypoints using the PUT/pose function. When the arm is executing a trajectory of PUT/pose waypoints, it stops for a short moment at each preset waypoint. With the PUT/poses/run function, however, the arm moves smoothly though all waypoints without stopping, which reduces the overall time of going from one pose to another.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.run_poses_with_http_info(body, speed, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.run_poses_with_http_info(body, speed, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param list[Pose] body: Request Body (required)
         :param int speed: Speed of Robot (required)
-        :param str type:
+        :param ERRORUNKNOWN type:
         :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
         :return: str
                  If the method is called asynchronously,
@@ -1437,7 +1809,7 @@ class RobotApi(object):
         """
 
         all_params = ['body', 'speed', 'type', 'tcp_max_velocity']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1462,10 +1834,12 @@ class RobotApi(object):
 
         if 'speed' in params and params['speed'] > 100:  # noqa: E501
             raise ValueError("Invalid value for parameter `speed` when calling `run_poses`, must be a value less than or equal to `100`")  # noqa: E501
-        if 'speed' in params and params['speed'] < 1:  # noqa: E501
-            raise ValueError("Invalid value for parameter `speed` when calling `run_poses`, must be a value greater than or equal to `1`")  # noqa: E501
+        if 'speed' in params and params['speed'] <= 0:  # noqa: E501
+            raise ValueError("Invalid value for parameter `speed` when calling `run_poses`, must be a value greater than `0`")  # noqa: E501
         if 'tcp_max_velocity' in params and params['tcp_max_velocity'] > 2:  # noqa: E501
             raise ValueError("Invalid value for parameter `tcp_max_velocity` when calling `run_poses`, must be a value less than or equal to `2`")  # noqa: E501
+        if 'tcp_max_velocity' in params and params['tcp_max_velocity'] <= 0:  # noqa: E501
+            raise ValueError("Invalid value for parameter `tcp_max_velocity` when calling `run_poses`, must be a value greater than `0`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -1507,7 +1881,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1516,23 +1890,23 @@ class RobotApi(object):
     def run_positions(self, body, speed, **kwargs):  # noqa: E501
         """Asking the arm to move to a position  # noqa: E501
 
-        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one position to another. Two motion types supported: linear and joint. Default: joint In the trajectory, each waypoint is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the distance (in meters) from the zero point to the desired TCP along the x, y, and z axes accordingly. _Roll_ stands for the desired TCP rotation angle around the x axis; _pitch_ - the desired TCP rotation angle around the y axis; _yaw_ - the desired TCP rotation angle around the z axis. All rotation angles are in radians.  # noqa: E501
+        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one position to another.  Two motion types supported: linear and joint. Default: joint  In the trajectory, each waypoint is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the distance (in meters) from the zero point to the desired TCP along the x, y, and z axes accordingly. _Roll_ stands for the desired TCP rotation angle around the x axis; _pitch_ - the desired TCP rotation angle around the y axis; _yaw_ - the desired TCP rotation angle around the z axis. All rotation angles are in radians.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.run_positions(body, speed, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.run_positions(body, speed, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param list[Position] body: Request Body (required)
         :param int speed: Speed of Robot (required)
-        :param str type:
+        :param ERRORUNKNOWN type:
         :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.run_positions_with_http_info(body, speed, **kwargs)  # noqa: E501
         else:
             (data) = self.run_positions_with_http_info(body, speed, **kwargs)  # noqa: E501
@@ -1541,16 +1915,16 @@ class RobotApi(object):
     def run_positions_with_http_info(self, body, speed, **kwargs):  # noqa: E501
         """Asking the arm to move to a position  # noqa: E501
 
-        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one position to another. Two motion types supported: linear and joint. Default: joint In the trajectory, each waypoint is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the distance (in meters) from the zero point to the desired TCP along the x, y, and z axes accordingly. _Roll_ stands for the desired TCP rotation angle around the x axis; _pitch_ - the desired TCP rotation angle around the y axis; _yaw_ - the desired TCP rotation angle around the z axis. All rotation angles are in radians.  # noqa: E501
+        The function allows for setting a trajectory of one or more waypoints to move the robotic arm smoothly from one position to another.  Two motion types supported: linear and joint. Default: joint  In the trajectory, each waypoint is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the distance (in meters) from the zero point to the desired TCP along the x, y, and z axes accordingly. _Roll_ stands for the desired TCP rotation angle around the x axis; _pitch_ - the desired TCP rotation angle around the y axis; _yaw_ - the desired TCP rotation angle around the z axis. All rotation angles are in radians.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.run_positions_with_http_info(body, speed, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.run_positions_with_http_info(body, speed, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param list[Position] body: Request Body (required)
         :param int speed: Speed of Robot (required)
-        :param str type:
+        :param ERRORUNKNOWN type:
         :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
         :return: str
                  If the method is called asynchronously,
@@ -1558,7 +1932,7 @@ class RobotApi(object):
         """
 
         all_params = ['body', 'speed', 'type', 'tcp_max_velocity']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1583,10 +1957,12 @@ class RobotApi(object):
 
         if 'speed' in params and params['speed'] > 100:  # noqa: E501
             raise ValueError("Invalid value for parameter `speed` when calling `run_positions`, must be a value less than or equal to `100`")  # noqa: E501
-        if 'speed' in params and params['speed'] < 1:  # noqa: E501
-            raise ValueError("Invalid value for parameter `speed` when calling `run_positions`, must be a value greater than or equal to `1`")  # noqa: E501
+        if 'speed' in params and params['speed'] <= 0:  # noqa: E501
+            raise ValueError("Invalid value for parameter `speed` when calling `run_positions`, must be a value greater than `0`")  # noqa: E501
         if 'tcp_max_velocity' in params and params['tcp_max_velocity'] > 2:  # noqa: E501
             raise ValueError("Invalid value for parameter `tcp_max_velocity` when calling `run_positions`, must be a value less than or equal to `2`")  # noqa: E501
+        if 'tcp_max_velocity' in params and params['tcp_max_velocity'] <= 0:  # noqa: E501
+            raise ValueError("Invalid value for parameter `tcp_max_velocity` when calling `run_positions`, must be a value greater than `0`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -1628,7 +2004,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1639,18 +2015,18 @@ class RobotApi(object):
 
         The function sets the digital output specified in the {port} parameter of the request path to the HIGH signal level.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.set_digital_output_high(port, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.set_digital_output_high(port, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param int port: The parameter indicates the number of a digital output is a physical port on the back panel of the control box. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1) or 2 (corresponds to Relay output 2). (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.set_digital_output_high_with_http_info(port, **kwargs)  # noqa: E501
         else:
             (data) = self.set_digital_output_high_with_http_info(port, **kwargs)  # noqa: E501
@@ -1661,11 +2037,11 @@ class RobotApi(object):
 
         The function sets the digital output specified in the {port} parameter of the request path to the HIGH signal level.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.set_digital_output_high_with_http_info(port, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.set_digital_output_high_with_http_info(port, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param int port: The parameter indicates the number of a digital output is a physical port on the back panel of the control box. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1) or 2 (corresponds to Relay output 2). (required)
         :return: str
                  If the method is called asynchronously,
@@ -1673,7 +2049,7 @@ class RobotApi(object):
         """
 
         all_params = ['port']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1727,7 +2103,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1738,18 +2114,18 @@ class RobotApi(object):
 
         The function sets the digital output specified in the Port parameter to the LOW signal level. A digital output is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.set_digital_output_low(port, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.set_digital_output_low(port, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param int port: The parameter indicates the number of the digital output on the back of the control box that you want to set to the LOW signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). (required)
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.set_digital_output_low_with_http_info(port, **kwargs)  # noqa: E501
         else:
             (data) = self.set_digital_output_low_with_http_info(port, **kwargs)  # noqa: E501
@@ -1760,11 +2136,11 @@ class RobotApi(object):
 
         The function sets the digital output specified in the Port parameter to the LOW signal level. A digital output is a physical port on the back panel of the control box that controls the robotic arm.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.set_digital_output_low_with_http_info(port, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.set_digital_output_low_with_http_info(port, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param int port: The parameter indicates the number of the digital output on the back of the control box that you want to set to the LOW signal level. Since the control box has two digital outputs, the parameter value can be either 1 (corresponds to Relay output 1 on the control box) or 2 (corresponds to Relay output 2 on the control box). (required)
         :return: str
                  If the method is called asynchronously,
@@ -1772,7 +2148,7 @@ class RobotApi(object):
         """
 
         all_params = ['port']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1826,7 +2202,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1837,21 +2213,21 @@ class RobotApi(object):
 
         The function commands the arm to move to a new pose. A pose is described as a set of output flange angles (in degrees) of the six servos integrated into the robot joints.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.set_pose(body, speed, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.set_pose(body, speed, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param Pose body: Request Body (required)
         :param int speed: Speed of Robot (required)
-        :param str type:
+        :param ERRORUNKNOWN type:
         :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.set_pose_with_http_info(body, speed, **kwargs)  # noqa: E501
         else:
             (data) = self.set_pose_with_http_info(body, speed, **kwargs)  # noqa: E501
@@ -1862,14 +2238,14 @@ class RobotApi(object):
 
         The function commands the arm to move to a new pose. A pose is described as a set of output flange angles (in degrees) of the six servos integrated into the robot joints.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.set_pose_with_http_info(body, speed, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.set_pose_with_http_info(body, speed, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param Pose body: Request Body (required)
         :param int speed: Speed of Robot (required)
-        :param str type:
+        :param ERRORUNKNOWN type:
         :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
         :return: str
                  If the method is called asynchronously,
@@ -1877,7 +2253,7 @@ class RobotApi(object):
         """
 
         all_params = ['body', 'speed', 'type', 'tcp_max_velocity']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -1902,10 +2278,12 @@ class RobotApi(object):
 
         if 'speed' in params and params['speed'] > 100:  # noqa: E501
             raise ValueError("Invalid value for parameter `speed` when calling `set_pose`, must be a value less than or equal to `100`")  # noqa: E501
-        if 'speed' in params and params['speed'] < 1:  # noqa: E501
-            raise ValueError("Invalid value for parameter `speed` when calling `set_pose`, must be a value greater than or equal to `1`")  # noqa: E501
+        if 'speed' in params and params['speed'] <= 0:  # noqa: E501
+            raise ValueError("Invalid value for parameter `speed` when calling `set_pose`, must be a value greater than `0`")  # noqa: E501
         if 'tcp_max_velocity' in params and params['tcp_max_velocity'] > 2:  # noqa: E501
             raise ValueError("Invalid value for parameter `tcp_max_velocity` when calling `set_pose`, must be a value less than or equal to `2`")  # noqa: E501
+        if 'tcp_max_velocity' in params and params['tcp_max_velocity'] <= 0:  # noqa: E501
+            raise ValueError("Invalid value for parameter `tcp_max_velocity` when calling `set_pose`, must be a value greater than `0`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -1947,7 +2325,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -1958,21 +2336,21 @@ class RobotApi(object):
 
         The function commands the arm to move to a new position. The position is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the desired distance (in meters) from the zero point to the TCP along the x, y, and z axes accordingly. _Roll_ stands for the desired TCP rotation angle around the x axis; _pitch_ - the desired TCP rotation angle around the y axis; _yaw_ - the desired TCP rotation angle around the z axis. All rotation angles are in radians.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.set_position(body, speed, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.set_position(body, speed, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param Position body: Request Body (required)
         :param int speed: Speed of Robot (required)
-        :param str type:
+        :param ERRORUNKNOWN type:
         :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
         :return: str
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.set_position_with_http_info(body, speed, **kwargs)  # noqa: E501
         else:
             (data) = self.set_position_with_http_info(body, speed, **kwargs)  # noqa: E501
@@ -1983,14 +2361,14 @@ class RobotApi(object):
 
         The function commands the arm to move to a new position. The position is described as a set of x, y, and z coordinates, as well as _roll_, _pitch_, and _yaw_ rotation angles. The coordinates define the desired distance (in meters) from the zero point to the TCP along the x, y, and z axes accordingly. _Roll_ stands for the desired TCP rotation angle around the x axis; _pitch_ - the desired TCP rotation angle around the y axis; _yaw_ - the desired TCP rotation angle around the z axis. All rotation angles are in radians.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.set_position_with_http_info(body, speed, async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.set_position_with_http_info(body, speed, async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :param Position body: Request Body (required)
         :param int speed: Speed of Robot (required)
-        :param str type:
+        :param ERRORUNKNOWN type:
         :param float tcp_max_velocity: The parameter defines the limit velocity in meters per second that an end effector can reach at its TCP while moving. It is not mandatory. When the user specifies no value for it, it is set to default. The default setting is 2 m/s.
         :return: str
                  If the method is called asynchronously,
@@ -1998,7 +2376,7 @@ class RobotApi(object):
         """
 
         all_params = ['body', 'speed', 'type', 'tcp_max_velocity']  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -2023,10 +2401,12 @@ class RobotApi(object):
 
         if 'speed' in params and params['speed'] > 100:  # noqa: E501
             raise ValueError("Invalid value for parameter `speed` when calling `set_position`, must be a value less than or equal to `100`")  # noqa: E501
-        if 'speed' in params and params['speed'] < 1:  # noqa: E501
-            raise ValueError("Invalid value for parameter `speed` when calling `set_position`, must be a value greater than or equal to `1`")  # noqa: E501
+        if 'speed' in params and params['speed'] <= 0:  # noqa: E501
+            raise ValueError("Invalid value for parameter `speed` when calling `set_position`, must be a value greater than `0`")  # noqa: E501
         if 'tcp_max_velocity' in params and params['tcp_max_velocity'] > 2:  # noqa: E501
             raise ValueError("Invalid value for parameter `tcp_max_velocity` when calling `set_position`, must be a value less than or equal to `2`")  # noqa: E501
+        if 'tcp_max_velocity' in params and params['tcp_max_velocity'] <= 0:  # noqa: E501
+            raise ValueError("Invalid value for parameter `tcp_max_velocity` when calling `set_position`, must be a value greater than `0`")  # noqa: E501
         collection_formats = {}
 
         path_params = {}
@@ -2068,7 +2448,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='str',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -2079,17 +2459,17 @@ class RobotApi(object):
 
         The function returns the actual state of the robotic arm - whether it is running (in motion), or idle (not in motion), or in the zero gravity mode.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.status_motion(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.status_motion(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: MotionStatus
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.status_motion_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.status_motion_with_http_info(**kwargs)  # noqa: E501
@@ -2100,18 +2480,18 @@ class RobotApi(object):
 
         The function returns the actual state of the robotic arm - whether it is running (in motion), or idle (not in motion), or in the zero gravity mode.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.status_motion_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.status_motion_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: MotionStatus
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -2155,7 +2535,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='MotionStatus',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
@@ -2164,19 +2544,19 @@ class RobotApi(object):
     def status_motors(self, **kwargs):  # noqa: E501
         """Getting the actual status of servo motors  # noqa: E501
 
-        The function returns the actual states of the six servo motors integrated into the joints of the robotic arm. The states are described as arrays of values for the following properties: - _Angle_ - the actual angular position (in degrees) of the servo's output flange - _Rotor velocity_ - the actual rotor velocity (in RPM) - _RMS current_ - the actual input current (in Amperes) - _Phase current_ - the actual magnitude of alternating current (in Amperes) - _Supply voltage_ - the actual supply voltage (in Volts) - _Stator temperature_  - the actual temperature (in degrees C) as measured on the stator winding - _Servo temperature_ - the actual temperature (in degrees C) as measured on the MCU PCB - _Velocity setpoint_ - the user-preset rotor velocity (in RPM) - _Velocity output_ - the motor control current (in Amperes) based on the preset velocity - _Velocity feedback_ - the actual rotor velocity (in RPM) - _Velocity error_ - the difference between the preset and the actual rotor velocities (in RPM) - _Position setpoint_ - the user-preset position of the servo flange in degrees - _Position output_ - rotor velocity (in RPM) based on the position setpoint - _Position feedback_ - the actual position of the servo flange (in degrees) based on the encoder feedback - _Position error_ - the difference (in degrees) between the preset and the actual positions of the servo flange  Each property in an array has six values - one for each of the six servos in the arm joints.  # noqa: E501
+        The function returns the actual states of the six servo motors integrated into the joints of the robotic arm. The states are described as arrays of values for the following properties:  - _Angle_ - the actual angular position (in degrees) of the servo's output flange  - _Rotor velocity_ - the actual rotor velocity (in RPM)  - _RMS current_ - the actual input current (in Amperes)  - _Phase current_ - the actual magnitude of alternating current (in Amperes)  - _Supply voltage_ - the actual supply voltage (in Volts)  - _Stator temperature_  - the actual temperature (in degrees C) as measured on the stator winding  - _Servo temperature_ - the actual temperature (in degrees C) as measured on the MCU PCB  - _Velocity setpoint_ - the user-preset rotor velocity (in RPM)  - _Velocity output_ - the motor control current (in Amperes) based on the preset velocity  - _Velocity feedback_ - the actual rotor velocity (in RPM)  - _Velocity error_ - the difference between the preset and the actual rotor velocities (in RPM)  - _Position setpoint_ - the user-preset position of the servo flange in degrees  - _Position output_ - rotor velocity (in RPM) based on the position setpoint  - _Position feedback_ - the actual position of the servo flange (in degrees) based on   the encoder feedback  - _Position error_ - the difference (in degrees) between the preset and the actual positions   of the servo flange   Each property in an array has six values - one for each of the six servos in the arm joints.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.status_motors(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.status_motors(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: list[MotorStatus]
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
-        if kwargs.get('async'):
+        if kwargs.get('async_req'):
             return self.status_motors_with_http_info(**kwargs)  # noqa: E501
         else:
             (data) = self.status_motors_with_http_info(**kwargs)  # noqa: E501
@@ -2185,20 +2565,20 @@ class RobotApi(object):
     def status_motors_with_http_info(self, **kwargs):  # noqa: E501
         """Getting the actual status of servo motors  # noqa: E501
 
-        The function returns the actual states of the six servo motors integrated into the joints of the robotic arm. The states are described as arrays of values for the following properties: - _Angle_ - the actual angular position (in degrees) of the servo's output flange - _Rotor velocity_ - the actual rotor velocity (in RPM) - _RMS current_ - the actual input current (in Amperes) - _Phase current_ - the actual magnitude of alternating current (in Amperes) - _Supply voltage_ - the actual supply voltage (in Volts) - _Stator temperature_  - the actual temperature (in degrees C) as measured on the stator winding - _Servo temperature_ - the actual temperature (in degrees C) as measured on the MCU PCB - _Velocity setpoint_ - the user-preset rotor velocity (in RPM) - _Velocity output_ - the motor control current (in Amperes) based on the preset velocity - _Velocity feedback_ - the actual rotor velocity (in RPM) - _Velocity error_ - the difference between the preset and the actual rotor velocities (in RPM) - _Position setpoint_ - the user-preset position of the servo flange in degrees - _Position output_ - rotor velocity (in RPM) based on the position setpoint - _Position feedback_ - the actual position of the servo flange (in degrees) based on the encoder feedback - _Position error_ - the difference (in degrees) between the preset and the actual positions of the servo flange  Each property in an array has six values - one for each of the six servos in the arm joints.  # noqa: E501
+        The function returns the actual states of the six servo motors integrated into the joints of the robotic arm. The states are described as arrays of values for the following properties:  - _Angle_ - the actual angular position (in degrees) of the servo's output flange  - _Rotor velocity_ - the actual rotor velocity (in RPM)  - _RMS current_ - the actual input current (in Amperes)  - _Phase current_ - the actual magnitude of alternating current (in Amperes)  - _Supply voltage_ - the actual supply voltage (in Volts)  - _Stator temperature_  - the actual temperature (in degrees C) as measured on the stator winding  - _Servo temperature_ - the actual temperature (in degrees C) as measured on the MCU PCB  - _Velocity setpoint_ - the user-preset rotor velocity (in RPM)  - _Velocity output_ - the motor control current (in Amperes) based on the preset velocity  - _Velocity feedback_ - the actual rotor velocity (in RPM)  - _Velocity error_ - the difference between the preset and the actual rotor velocities (in RPM)  - _Position setpoint_ - the user-preset position of the servo flange in degrees  - _Position output_ - rotor velocity (in RPM) based on the position setpoint  - _Position feedback_ - the actual position of the servo flange (in degrees) based on   the encoder feedback  - _Position error_ - the difference (in degrees) between the preset and the actual positions   of the servo flange   Each property in an array has six values - one for each of the six servos in the arm joints.   # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async=True
-        >>> thread = api.status_motors_with_http_info(async=True)
+        asynchronous HTTP request, please pass async_req=True
+        >>> thread = api.status_motors_with_http_info(async_req=True)
         >>> result = thread.get()
 
-        :param async bool
+        :param async_req bool
         :return: list[MotorStatus]
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         all_params = []  # noqa: E501
-        all_params.append('async')
+        all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
         all_params.append('_request_timeout')
@@ -2242,7 +2622,7 @@ class RobotApi(object):
             files=local_var_files,
             response_type='list[MotorStatus]',  # noqa: E501
             auth_settings=auth_settings,
-            is_async=params.get('async'),
+            async_req=params.get('async_req'),
             _return_http_data_only=params.get('_return_http_data_only'),
             _preload_content=params.get('_preload_content', True),
             _request_timeout=params.get('_request_timeout'),
