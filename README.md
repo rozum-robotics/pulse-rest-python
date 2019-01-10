@@ -1,8 +1,11 @@
 # Pulse Robot REST API Python
 
 This folder contains `Python` wrapper for the [pulse robot](https://rozum.com/robotic-arm/) REST api. 
-Tested on Python 3. Compatibility with Python 2 is not guaranteed but this client uses 
+Tested on Python 3. Compatibility with Python 2 is not guarantied but underlying api is generated using 
 [swagger-codegen](https://github.com/swagger-api/swagger-codegen) so it may work for you.
+
+## Requirements
+Python 3.4+
 
 ### Installation
 Using pip: `pip install pulse-rest --trusted-host pip.rozum.com -i http://pip.rozum.com/simple`
@@ -16,9 +19,21 @@ host = "127.0.0.1:8080"  # replace with valid robot address
 robot = RobotPulse(host)
 # create motion targets
 zero_pose = pose([0, 0, 0, 0, 0, 0])
-example_position = position((-0.33, -0.33, 0.43), (0, -1.1659, 0))
+example_position = position([-0.33, -0.33, 0.43], [0, -1.1659, 0])
 SPEED = 100
 try:
+    # add some obstacles to environment so that possible collisions are calculated
+    robot.add_to_environment(create_box_obstacle(Point(0.1, 0.1, 0.1), position((1, 1, 1), (0, 0, 0)), 
+                                                 'example_box'))
+    robot.add_to_environment(create_capsule_obstacle(0.1, Point(0.5, 0.5, 0.2), Point(0.5, 0.5, 0.5), 
+                                                     'example_capsule'))
+    robot.add_to_environment(create_plane_obstacle([Point(-0.5, 0.2, 0), Point(-0.5, 0, 0), Point(-0.5, 0, 0.1)], 
+                                                   'example_plane'))
+    # change robot tool, set tcp offset and set tool shape
+    robot.change_tool(tool(
+        tcp_position=position([0, 0, 0.1], [0, 0, 0]), 
+        shape=[create_capsule_obstacle(0.02, Point(0, 0, 0), Point(0, 0, 0.1), 'tool_part_0')], 
+        name='example_tool'))
     # execute desired actions
     robot.set_pose(pose, SPEED)
     robot.await_motion()
@@ -34,13 +49,16 @@ except RestApiException as e:
 ## Robot Functionality
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**add_to_environment**](README.md#add_to_environment) | **PUT** /environment | Add obstacle to robot environment.
 [**change_base**](README.md#change_base) | **POST** /base | Setting a new zero point position
 [**change_tool**](README.md#change_tool) | **POST** /tool | Setting tool properties
 [**close_gripper**](README.md#close_gripper) | **PUT** /gripper/close | Asking the arm to close the gripper
 [**freeze**](README.md#freeze) | **PUT** /freeze | Asking the arm to go to the freeze state
+[**get_all_from_environment**](README.md#get_all_from_environment) | **GET** /environment | Getting robot environment.
 [**get_base**](README.md#get_base) | **GET** /base | Getting the actual position of the arm base
 [**get_digital_input**](README.md#get_digital_input) | **GET** /signal/input/{port} | Get level of digital input signal
 [**get_digital_output**](README.md#get_digital_output) | **GET** /signal/output/{port} | Get level of digital output signal
+[**get_from_environment_by_name**](README.md#get_from_environment_by_name) | **GET** /environment/{obstacle} | Getting obstacle from robot environment by name.
 [**get_pose**](README.md#get_pose) | **GET** /pose | Getting the actual arm pose
 [**get_position**](README.md#get_position) | **GET** /position | Getting the actual arm position
 [**get_tool**](README.md#get_tool) | **GET** /tool | Getting actual tool properties
@@ -49,6 +67,8 @@ Method | HTTP request | Description
 [**pack**](README.md#pack) | **PUT** /pack | Asking the arm to reach a compact pose for transportation
 [**recover**](README.md#recover) | **PUT** /recover | Recover robot after emergency if it is possible.
 [**relax**](README.md#relax) | **PUT** /relax | Asking the arm to relax
+[**remove_all_from_environment**](README.md#remove_all_from_environment) | **DELETE** /environment | Remove all obstacles from robot environment.
+[**remove_from_environment_by_name**](README.md#remove_from_environment_by_name) | **DELETE** /environment/{obstacle} | Remove obstacle from robot environment by name.
 [**run_poses**](README.md#run_poses) | **PUT** /poses/run | Asking the arm to move to a pose
 [**run_positions**](README.md#run_positions) | **PUT** /positions/run | Asking the arm to move to a position
 [**set_digital_output_high**](README.md#set_digital_output_high) | **PUT** /signal/output/{port}/high | Set high level of digital output signal
@@ -57,6 +77,23 @@ Method | HTTP request | Description
 [**set_position**](README.md#set_position) | **PUT** /position | Setting a new arm position
 [**status_motion**](README.md#status_motion) | **GET** /status/motion | Getting the actual motion status
 [**status_motors**](README.md#status_motors) | **GET** /status/motors | Getting the actual status of servo motors
+
+### **add_to_environment**
+> str robot.add_to_environment(body)
+
+Add obstacle to robot environment.
+
+Add obstacle to robot environment. Obstacle it is an object that is taken into account in the calculation of collisions.
+
+
+#### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **Obstacle**| Request Body | 
+
+#### Return type
+**str**
 
 ### **change_base**
 > Position robot.change_base(position)
@@ -119,6 +156,19 @@ This endpoint does not need any parameter.
 #### Return type
 None
 
+### **get_all_from_environment**
+> list[Obstacle] robot.get_all_from_environment()
+
+Getting robot environment.
+
+Return all obstacles from environment. Obstacle it is an object that is taken into account in the calculation of collisions.
+
+#### Parameters
+This endpoint does not need any parameter.
+
+#### Return type
+**list[Obstacle]**
+
 ### **get_base**
 > Position robot.get_base()
 
@@ -163,6 +213,22 @@ Name | Type | Description  | Notes
  
 #### Return type
 **Signal**
+
+### **get_from_environment_by_name**
+> Obstacle robot.get_from_environment_by_name(obstacle)
+
+Getting obstacle from robot environment by name.
+
+Return obstacle from environment by name. Obstacle it is an object that is taken into account in the calculation of collisions.
+
+#### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **obstacle** | **str**| The parameter is the name of element from environment that you want to get. | 
+
+#### Return type
+**Obstacle**
 
 ### **get_pose**
 > Pose robot.get_pose()
@@ -270,6 +336,36 @@ This endpoint does not need any parameter.
 
 #### Return type
 None
+
+### **remove_all_from_environment**
+> str remove_all_from_environment()
+
+Remove all obstacles from robot environment.
+
+Remove all obstacles from robot environment. Obstacle it is an object that is taken into account in the calculation of collisions.
+
+
+#### Parameters
+This endpoint does not need any parameter.
+
+#### Return type
+**str**
+
+### **remove_from_environment_by_name**
+> str robot.remove_from_environment_by_name(obstacle)
+
+Remove obstacle from robot environment by name.
+
+Remove obstacle from robot environment by name. Obstacle it is an object that is taken into account in the calculation of collisions.
+
+#### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **obstacle** | **str**| The parameter is the name of element from environment that you want to remove. | 
+
+#### Return type
+**str**
 
 ### **run_poses**
 > str robot.run_poses(poses, speed, type=type, tcp_max_velocity=tcp_max_velocity)

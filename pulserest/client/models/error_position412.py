@@ -60,6 +60,9 @@ class ErrorPosition412(object):
                 ))
             else:
                 result[attr] = value
+        if issubclass(ErrorPosition412, dict):
+            for key, value in self.items():
+                result[key] = value
 
         return result
 
