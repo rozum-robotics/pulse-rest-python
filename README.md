@@ -20,8 +20,8 @@ where **v1**, **v2**, and **v3** (e.g. pulse-rest==1.3.1) are version numbers as
 #### Software compatibility table
 Pulse desk version  | Python api version
 ------------------- |-------------------
-from 1.3.1 to 1.3.5 |1.3.1
-from 1.4.0          |1.4.0
+from 1.3.1 to 1.3.5 | 1.3.1
+from 1.4.0          | 1.4.0
 
 ### Getting started
 Example uses the latest version of library. 
