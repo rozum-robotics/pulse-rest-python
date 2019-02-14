@@ -15,12 +15,13 @@ to get the latest version.
 
 To install specific version: 
 `pip install pulse-rest==v1.v2.v3 --trusted-host pip.rozum.com -i http://pip.rozum.com/simple`
-where **v1**, **v2**, and **v3** are version numbers as listed below in compatibility table.
+where **v1**, **v2**, and **v3** (e.g. pulse-rest==1.3.1) are version numbers as listed below in compatibility table.
+
 #### Software compatibility table
-Python api version | Pulse desk version
--------------------|-------------------
-1.3.1              |from 1.3.1 to 1.3.5
-1.4.0              |from 1.4.0
+Pulse desk version  | Python api version
+------------------- |-------------------
+from 1.3.1 to 1.3.5 |1.3.1
+from 1.4.0          |1.4.0
 
 ### Getting started
 Example uses the latest version of library. 
