@@ -8,9 +8,24 @@ Tested on Python 3. Compatibility with Python 2 is not guarantied but underlying
 Python 3.4+
 
 ### Installation
-Using pip: `pip install pulse-rest --trusted-host pip.rozum.com -i http://pip.rozum.com/simple`
+
+Using pip: 
+`pip install pulse-rest --trusted-host pip.rozum.com -i http://pip.rozum.com/simple` 
+to get the latest version. 
+
+To install specific version: 
+`pip install pulse-rest==v1.v2.v3 --trusted-host pip.rozum.com -i http://pip.rozum.com/simple`
+where **v1**, **v2**, and **v3** are version numbers as listed below in compatibility table.
+#### Software compatibility table
+Python api version | Pulse desk version
+-------------------|-------------------
+1.3.1              |from 1.3.1 to 1.3.5
+1.4.0              |from 1.4.0
 
 ### Getting started
+Example uses the latest version of library. 
+You may need to change something in order to make it work in previous versions.
+
 ```python
 from pprint import pprint
 from pulserest import *
@@ -20,7 +35,7 @@ robot = RobotPulse(host)
 # create motion targets
 zero_pose = pose([0, 0, 0, 0, 0, 0])
 example_position = position([-0.33, -0.33, 0.43], [0, -1.1659, 0])
-SPEED = 100
+SPEED = 10
 try:
     # add some obstacles to environment so that possible collisions are calculated
     robot.add_to_environment(create_box_obstacle(Point(0.1, 0.1, 0.1), position((1, 1, 1), (0, 0, 0)), 
