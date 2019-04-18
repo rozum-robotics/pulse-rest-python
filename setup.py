@@ -8,7 +8,13 @@ DESCRIPTION = 'Python REST API Client for Pulse Robotic Arm '
 URL = 'https://rozum.com'
 EMAIL = 'ilya.grozov@rozum.com'
 AUTHOR = 'Ilya Grozov'
-VERSION = '1.4.0'
+VERSION = '1.4.3.dev0'
+
+if 'dev' in VERSION:
+    DEVELOPMENT_STATUS = 'Development Status :: 4 - Beta'
+else:
+    DEVELOPMENT_STATUS = 'Development Status :: 5 - Production/Stable'
+
 REQUIRED = [
     'certifi >= 14.05.14',
     'six >= 1.10',
@@ -35,7 +41,7 @@ setup(
     license='MIT',
     classifiers=[
         'License :: OSI Approved :: MIT License',
-        'Development Status :: 5 - Production/Stable',
+        DEVELOPMENT_STATUS,
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: Implementation :: CPython'
