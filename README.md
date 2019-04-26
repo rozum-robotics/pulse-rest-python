@@ -1,3 +1,7 @@
+# Deprecation warning!
+Since api version 1.4.3 this library is not supported in favor of 
+[pulse-api](http://github.com/rozum-robotics/pulse-api).
+
 # Pulse Robot REST API Python
 
 This folder contains `Python` wrapper for the [pulse robot](https://rozum.com/robotic-arm/) REST api. 
