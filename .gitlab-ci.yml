@@ -1,7 +1,6 @@
 image: python:3.6
 
 stages:
-  - publish-dev
   - publish
 
 publish:
