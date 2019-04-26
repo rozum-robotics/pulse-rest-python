@@ -6,9 +6,9 @@ from setuptools import setup, find_packages
 NAME = 'pulse-rest'
 DESCRIPTION = 'Python REST API Client for Pulse Robotic Arm '
 URL = 'https://rozum.com'
-EMAIL = 'ilya.grozov@rozum.com'
-AUTHOR = 'Ilya Grozov'
-VERSION = '1.4.3.dev0'
+EMAIL = 'dev@rozum.com'
+AUTHOR = 'Rozum Robotics'
+VERSION = '1.4.3.dev1'
 
 if 'dev' in VERSION:
     DEVELOPMENT_STATUS = 'Development Status :: 4 - Beta'
