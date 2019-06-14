@@ -14,11 +14,11 @@ Python 3.4+
 ### Installation
 
 Using pip: 
-`pip install pulse-rest --trusted-host pip.rozum.com -i http://pip.rozum.com/simple` 
+`pip install pulse-rest pip.rozum.com -i https://pip.rozum.com/simple` 
 to get the latest version. 
 
 To install specific version: 
-`pip install pulse-rest==v1.v2.v3 --trusted-host pip.rozum.com -i http://pip.rozum.com/simple`
+`pip install pulse-rest==v1.v2.v3 pip.rozum.com -i https://pip.rozum.com/simple`
 where **v1**, **v2**, and **v3** (e.g. pulse-rest==1.3.1) are version numbers as listed below in compatibility table.
 
 #### Software compatibility table
